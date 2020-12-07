@@ -1,0 +1,10 @@
+.products .loader-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner-border {
+  border-right-color: #ffb401 !important;
+}

@@ -1,0 +1,13 @@
+.description-bottom {
+  display: flex;
+  float: right;
+}
+
+.description-bottom button {
+  margin-right: 15px;
+}
+
+.ja-description .error-text {
+  color: red;
+  margin: 0;
+}

@@ -1,0 +1,38 @@
+.overview-carousel {
+  background: url(../../img/machine-greyscale.jpg);
+  background-size: cover;
+  /* height: 98vh; */
+  overflow: hidden;
+}
+
+.overview-carousel .overlay-image {
+  background-color: #ffffff;
+  opacity: 0.92;
+  height: 110vh;
+}
+
+.overview-carousel .ant-carousel {
+  height: 110vh;
+}
+.overview-carousel .carousel-container {
+  position: relative;
+  bottom: 590px;
+}
+
+/* .carousel-container .carousel-details .row {
+  align-items: center;
+} */
+
+.carousel-container .container .row .col img {
+  max-width: 100%;
+}
+
+.carousel-container .container .row {
+  margin-top: 100px;
+}
+
+@media (max-width: 576px) {
+  .carousel-container .row {
+    flex-direction: column !important;
+  }
+}

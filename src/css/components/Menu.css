@@ -1,0 +1,53 @@
+.category-menu {
+  background: #ffffff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+  min-width: 19rem;
+  z-index: 1000;
+  list-style: none;
+  height: 100%;
+  margin: 75px 20px 0 20px;
+}
+.menu-header {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+.menu-header h3 {
+  color: #ffb401;
+  font-weight: 700;
+}
+
+.menu-item-list {
+  list-style: none;
+  color: rgb(33, 37, 41);
+}
+.menu-item-list ul {
+  list-style: none;
+  padding: 0;
+}
+.menu-item-list ul li a {
+  text-decoration: none;
+  color: rgb(33, 37, 41);
+}
+.menu-item-list ul li:hover {
+  background-color: #f8f9fa;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}

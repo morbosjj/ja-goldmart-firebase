@@ -1,0 +1,8 @@
+.breadcrumb-container {
+  background: #f2f2f2;
+  padding: 10px;
+}
+.breadcrumb-link {
+  margin: 0 auto;
+  max-width: 1200px;
+}

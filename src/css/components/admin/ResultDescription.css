@@ -1,0 +1,34 @@
+.preview-default-image h3 {
+  padding: 16px 24px;
+}
+
+.list-preview-container {
+  padding-left: 24px;
+}
+
+.product-result {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.product-result form {
+  margin-left: 10px;
+}
+
+.image-preview .ant-upload-list-item-actions,
+.image-preview .ant-upload {
+  display: none;
+}
+
+.result-bottom {
+  display: flex;
+  float: right;
+  margin-top: 10px;
+}
+
+.result-bottom button {
+  margin-right: 15px;
+}
+
+.table-description {
+  margin-top: 30px;
+}

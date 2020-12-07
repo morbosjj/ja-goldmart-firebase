@@ -1,0 +1,13 @@
+.images-list {
+  display: flex;
+  max-width: 250px;
+  width: 150px;
+  margin-top: 20px;
+}
+.list-img {
+  margin-right: 10px;
+}
+
+.list-img img {
+  max-width: 100%;
+}

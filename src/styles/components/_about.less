@@ -1,0 +1,95 @@
+.about-us {
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+  display: grid;
+  margin-bottom: 80px;
+  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+
+  img {
+    max-width: 100%;
+  }
+  .about {
+    // flex: 1;
+    padding: 20px;
+
+
+    p {
+      line-height: 1.6em;
+      font-size: 16px;
+      font-weight: 400;
+      width: 90%;
+      color: rgb(149,150,152);
+    }
+  }
+}
+.about-title {
+  color: @primary;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 34px;
+  font-family: "Oswald",sans-serif;
+}
+
+
+@media(min-width: 375px){
+ 
+}
+
+
+
+
+@media(min-width: 425px) {
+  
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 700px) {
+  .about-us {
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+
+}
+
+@media (min-width: 800px) {
+  .about-us {
+
+    .about {
+      padding: 25px;
+    }
+  }
+}
+
+// 820
+@media (min-width: 900px) {
+
+}
+
+@media (min-width: 1024px) {
+  .about-us {
+    justify-items: center;
+    align-items: center;
+    .about {
+      
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .about-title {
+    font-size: 40px;
+  }
+}
+
+
+
+
+@media (min-width: 1300px) {
+
+}

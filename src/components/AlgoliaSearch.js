@@ -4,14 +4,13 @@ import {
   InstantSearch,
   SearchBox,
   Hits,
-  Highlight,
   connectStateResults,
   Snippet,
 } from 'react-instantsearch-dom';
-import { Card, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ListGroup, Row, Col, Image } from 'react-bootstrap';
 import { replaceToDash } from './Helper';
-import '../css/components/Product.css';
+import '../css/components/Algolia.css';
 
 const algoliaClient = algoliasearch(
   'RKK6GIJLUG',
@@ -48,7 +47,7 @@ const searchClient = {
 const AlgoliaSearch = () => {
   return (
     <InstantSearch searchClient={searchClient} indexName='firebase'>
-      <SearchBox />
+      <SearchBox translations={{ placeholder: 'Search all products' }} />
 
       <Hits hitComponent={Hit} />
     </InstantSearch>
@@ -57,27 +56,26 @@ const AlgoliaSearch = () => {
 
 function Hit({ hit }) {
   return (
-    <Card className='my-3 p-1 rounded product-card'>
-      <Link to={`/product/${replaceToDash(hit.full_product_name)}`}>
+    <article className='hit'>
+      <header className='hit-image-container'>
         {hit.images ? (
-          <Card.Img
+          <Image
             src={hit.images[0].url}
-            variant='top'
             title={hit.full_product_name}
+            fluid
+            rounded
+            className='hit-image'
           />
         ) : (
-          'No Image'
+          ''
         )}
-      </Link>
+      </header>
 
-      <Card.Body>
-        <Link to={`/product/${replaceToDash(hit.full_product_name)}`}>
-          <Card.Title as='div'>
-            <h6>{hit.images.full_product_name}</h6>
-          </Card.Title>
-        </Link>
-      </Card.Body>
-    </Card>
+      <div className='hit-info-container'>
+        <p className='hit-category'>{hit.category}</p>
+        <h1>{hit.full_product_name}</h1>
+      </div>
+    </article>
   );
 }
 

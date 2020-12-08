@@ -19,16 +19,12 @@
   bottom: 590px;
 }
 
-/* .carousel-container .carousel-details .row {
-  align-items: center;
-} */
-
 .carousel-container .container .row .col img {
   max-width: 100%;
 }
 
 .carousel-container .container .row {
-  margin-top: 100px;
+  margin-top: 65px;
 }
 
 @media (max-width: 576px) {

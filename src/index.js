@@ -2,13 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {} from 'react-router-dom';
 import App from './App';
-import { DataProvider } from './components/Context';
 import './css/App.css';
 
 ReactDOM.render(
-  <DataProvider>
-    <App />
-  </DataProvider>,
+  <App />,
 
   document.getElementById('root')
 );

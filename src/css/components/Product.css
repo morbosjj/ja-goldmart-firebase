@@ -1,9 +1,0 @@
-.product-card .card-title strong {
-  color: #ffb400;
-}
-.product-card .card-title h6:hover {
-  text-decoration: none !important;
-}
-.product-card:hover {
-  box-shadow: 0 0 40px -14px #000;
-}

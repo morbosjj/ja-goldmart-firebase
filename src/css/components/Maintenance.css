@@ -1,0 +1,65 @@
+.page-maintenance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.maintenance-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.maintenance-header h2 {
+  font-weight: 650;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: auto;
+}
+
+.maintenance-image {
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.maintenance-title {
+  text-align: center;
+  width: 100%;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+.maintenance-title h1 {
+  font-size: 40px;
+  font-weight: 700;
+  font-family: 'Open Sans';
+  margin: 0 auto;
+}
+.maintenance-title p {
+  font-size: 20px;
+}
+
+.maintenance-title img {
+  width: 40%;
+  margin-top: 80px;
+}
+
+.maintenance-footer {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.maintenance-footer ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.maintenance-footer ul li {
+  margin-right: 20px;
+}

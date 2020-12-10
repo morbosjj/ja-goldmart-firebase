@@ -1,7 +1,0 @@
-.upload-preview {
-  display: flex;
-  flex-direction: row;
-}
-.upload-preview img {
-  max-width: 100%;
-}

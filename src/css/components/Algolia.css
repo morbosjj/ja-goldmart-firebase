@@ -1,3 +1,33 @@
+.ais-SearchBox-input {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 40px;
+}
+.ais-Hits {
+  position: absolute;
+  background-color: #ffffff;
+}
+
+.responsive-alogia-search .ais-Hits {
+  position: relative;
+}
+
+.ais-Hits-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ais-Hits-item {
+  border: none;
+  width: 100%;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+.ais-Hits-item a:hover {
+  text-decoration: none;
+}
 .hit {
   color: #21243d;
   font-size: 14px;
@@ -5,8 +35,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 20px;
 }
-
+.hit:hover {
+  background: rgb(255, 180, 0, 1);
+  cursor: pointer;
+}
 .hit h1 {
   font-size: 14px;
 }
@@ -33,10 +67,10 @@
 .hit-image-container {
   align-items: center;
   display: flex;
-  height: 174px;
+  height: 70px;
   justify-content: center;
   margin: auto;
-  width: 174px;
+  width: 70px;
 }
 
 .hit-image {

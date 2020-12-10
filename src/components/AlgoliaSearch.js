@@ -5,10 +5,8 @@ import {
   SearchBox,
   Hits,
   connectStateResults,
-  Snippet,
 } from 'react-instantsearch-dom';
-import { Link } from 'react-router-dom';
-import { ListGroup, Row, Col, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import { replaceToDash } from './Helper';
 import '../css/components/Algolia.css';
 
@@ -56,26 +54,27 @@ const AlgoliaSearch = () => {
 
 function Hit({ hit }) {
   return (
-    <article className='hit'>
-      <header className='hit-image-container'>
-        {hit.images ? (
-          <Image
-            src={hit.images[0].url}
-            title={hit.full_product_name}
-            fluid
-            rounded
-            className='hit-image'
-          />
-        ) : (
-          ''
-        )}
-      </header>
+    <a href={`/product/${replaceToDash(hit.full_product_name)}`}>
+      <article className='hit'>
+        <header className='hit-image-container'>
+          {hit.images ? (
+            <Image
+              src={hit.images[0].url}
+              title={hit.full_product_name}
+              className='hit-image'
+              fluid
+            />
+          ) : (
+            ''
+          )}
+        </header>
 
-      <div className='hit-info-container'>
-        <p className='hit-category'>{hit.category}</p>
-        <h1>{hit.full_product_name}</h1>
-      </div>
-    </article>
+        <div className='hit-info-container'>
+          <p className='hit-category'>{hit.category}</p>
+          <h1>{hit.full_product_name}</h1>
+        </div>
+      </article>
+    </a>
   );
 }
 

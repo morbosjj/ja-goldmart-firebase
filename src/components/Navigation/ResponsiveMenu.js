@@ -6,7 +6,7 @@ const { SubMenu } = Menu;
 
 const ResponsiveMenu = () => {
   return (
-    <div className='responsive-nav-menu'>
+    <div className='responsive-nav-menu my-3'>
       <Menu mode='inline'>
         <SubMenu key='sub-products' title='Products'>
           <Menu.Item>

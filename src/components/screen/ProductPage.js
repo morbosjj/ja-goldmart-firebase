@@ -28,7 +28,6 @@ function ProductPage({ match }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(docs);
   return (
     <MainContainer>
       <div className='product-detail-container'>

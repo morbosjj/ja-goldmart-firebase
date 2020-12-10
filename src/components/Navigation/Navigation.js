@@ -63,12 +63,14 @@ const Navigation = () => {
 
           <Drawer
             placement='right'
+            width='432'
             closable={false}
             onClose={onClose}
             visible={visible}
           >
-            {/* <Search /> */}
-            <AlgoliaSearch />
+            <div className='responsive-alogia-search'>
+              <AlgoliaSearch />
+            </div>
             <ResponsiveMenu />
           </Drawer>
         </div>

@@ -26,7 +26,7 @@ const CarouselSlider = () => {
       name: 'About us',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit mollitia cupiditate culpa, ipsa alias itaque tempore obcaecati.',
-      image: 'img/eccentric_slotter.png',
+      image: 'img/eccentric-slotter.png',
       link: '/about',
     },
   ];

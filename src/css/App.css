@@ -1,9 +1,6 @@
 @import '~antd/dist/antd.css';
 @import '~react-image-gallery/styles/css/image-gallery.css';
 
-body {
-  font-family: sans-serif;
-}
 * {
   box-sizing: border-box;
 }

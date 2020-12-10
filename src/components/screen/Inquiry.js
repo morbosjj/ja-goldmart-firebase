@@ -66,7 +66,7 @@ function Inquiry({ match }) {
                         <p>{inquiry.message}</p>
                       </div>
 
-                      <a
+                      {/* <a
                         href={`https://mail.google.com/mail/?view=cm&fs=1&to=${inquiry.email}`}
                         rel='noopener noreferrer'
                         target='_blank'
@@ -74,7 +74,7 @@ function Inquiry({ match }) {
                         <Button variant='primary'>
                           <i class='fas fa-reply'></i> Reply
                         </Button>
-                      </a>
+                      </a> */}
                     </ListGroup.Item>
 
                     <ListGroup.Item>

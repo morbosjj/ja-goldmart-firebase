@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .maintenance-header {
@@ -14,11 +15,14 @@
 .maintenance-header h2 {
   font-weight: 650;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .logo-wrapper {
   width: 90px;
-  height: 90px;
+  height: 62px;
   margin: auto;
 }
 
@@ -33,33 +37,48 @@
   width: 100%;
   margin-top: 50px;
   margin-bottom: 70px;
+  padding: 10px;
 }
 .maintenance-title h1 {
-  font-size: 40px;
+  font-size: 26px;
   font-weight: 700;
   font-family: 'Open Sans';
   margin: 0 auto;
 }
 .maintenance-title p {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .maintenance-title img {
-  width: 40%;
-  margin-top: 80px;
+  width: 290px;
+  margin-top: 50px;
 }
 
 .maintenance-footer {
   padding: 10px;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .maintenance-footer ul {
   display: flex;
   flex-direction: row;
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .maintenance-footer ul li {
   margin-right: 20px;
+  align-items: center;
+}
+
+@media (min-width: 520px) {
+  .maintenance-title h1 {
+    font-size: 32px;
+  }
+  .maintenance-title p {
+    font-size: 18px;
+    width: 80%;
+    margin: 0 auto;
+  }
 }

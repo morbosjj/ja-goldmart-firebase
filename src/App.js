@@ -23,6 +23,7 @@ import UpdateProfile from './components/screen/UpdateProfile';
 import Navigation from './components/Navigation/Navigation';
 import FooterSite from './components/FooterSite';
 import CategoryShop from './components/screen/CategoryShop';
+import Resources from './components/screen/Resources';
 
 const App = () => {
   return (
@@ -42,11 +43,12 @@ const App = () => {
         <PrivateRoute path='/admin/result' component={Result} />
         <PrivateRoute path='/admin/edit/:id' component={EditDescription} />
 
-        <Route path='/shop' component={Shop} />
         <Route path='/product/:name' component={ProductPage} />
         <Route path='/category/:name' component={CategoryShop} />
         <Route path='/inquire' component={Inquire} />
         <Route path='/contacts' component={Contacts} />
+        <Route path='/resources' component={Resources} />
+        <Route path='/shop' component={Shop} />
         <Route path='/' component={Home} exact />
 
         <Route>

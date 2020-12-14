@@ -48,9 +48,9 @@ const Resources = () => {
                     <td>Brochure</td>
 
                     <td>
-                      <a onClick={() => downloadFile('JA Brochure.pdf')}>
+                      <button onClick={() => downloadFile('JA Brochure.pdf')}>
                         Download
-                      </a>
+                      </button>
                     </td>
                   </tr>
 
@@ -58,9 +58,11 @@ const Resources = () => {
                     <td>JA Goldmart Flyers</td>
                     <td>Flyers</td>
                     <td>
-                      <a onClick={() => downloadFile('JA Goldmart Flyers.pdf')}>
+                      <button
+                        onClick={() => downloadFile('JA Goldmart Flyers.pdf')}
+                      >
                         Download
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 </tbody>

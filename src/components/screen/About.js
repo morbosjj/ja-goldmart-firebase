@@ -1,13 +1,21 @@
 import React from 'react';
 import MainContainer from '../container/MainContainer';
 import { Content } from 'antd/lib/layout/layout';
-import '../../css/components/About.css';
+import Logo from '../../img/logo.png';
+import '../../css/components/CompanyProfile.css';
 
 const About = () => {
   return (
     <MainContainer>
       <Content className='content-main'>
         <div className='about'>
+          <div className='about-header'>
+            <div className='logo-wrapper'>
+              <img src={Logo} alt='company' className='about-image' />
+            </div>
+            <h2>JA Goldmart Enterprise</h2>
+          </div>
+
           <div className='company-profile'>
             <h2>Company Profile</h2>
 
@@ -142,7 +150,7 @@ const About = () => {
             </ul>
           </div>
 
-          <div className='Other Services'>
+          <div className='other-services'>
             <h2>Other Services</h2>
             <p>
               Cater Die Cutting services and Die Cut Blades for those who

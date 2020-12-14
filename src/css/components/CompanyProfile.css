@@ -1,0 +1,69 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about > div {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-wrapper {
+  width: 150px;
+  height: 140px;
+}
+
+.about-header h2 {
+  font-weight: 650;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.about-image {
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.company-profile,
+.delivery-equipment,
+.services,
+.product-line,
+.other-services {
+  text-align: justify;
+}
+
+.company-profile h2,
+.delivery-equipment h2,
+.services h2,
+.product-line h2,
+.other-services h2 {
+  margin-bottom: 20px;
+}
+
+.company-profile h2 {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .about-header {
+    flex-direction: row;
+  }
+  .logo-wrapper {
+    height: 100px;
+  }
+  .about {
+    padding: 30px;
+  }
+  .about-header h2 {
+    font-size: 32px;
+  }
+}

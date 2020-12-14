@@ -53,6 +53,7 @@ const AlgoliaSearch = () => {
 };
 
 function Hit({ hit }) {
+  console.log(hit);
   return (
     <a href={`/product/${replaceToDash(hit.full_product_name)}`}>
       <article className='hit'>
@@ -70,7 +71,7 @@ function Hit({ hit }) {
         </header>
 
         <div className='hit-info-container'>
-          <p className='hit-category'>{hit.category}</p>
+          {/* <p className='hit-category'>{hit.categories[0]}</p> */}
           <h1>{hit.full_product_name}</h1>
         </div>
       </article>

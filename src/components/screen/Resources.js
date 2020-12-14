@@ -3,12 +3,42 @@ import { Row, Col, Container, Table } from 'react-bootstrap';
 import { Layout } from 'antd';
 import MainContainer from '../container/MainContainer';
 import { storage } from '../../firebase/config';
+import algoliasearch from 'algoliasearch/lite';
+import {
+  InstantSearch,
+  Hits,
+  Panel,
+  RefinementList,
+} from 'react-instantsearch-dom';
 import axios from 'axios';
 import '../../css/components/Resources.css';
 
 const { Content } = Layout;
 
 const Resources = () => {
+  const algoliaClient = algoliasearch(
+    'RKK6GIJLUG',
+    '9f4da6133bd086b30b3cab41166dae33'
+  );
+
+  const searchClient = {
+    search(requests) {
+      if (requests.every(({ params }) => !params.query)) {
+        return Promise.resolve({
+          results: requests.map(() => ({
+            hits: [],
+            nbHits: 0,
+            nbPages: 0,
+            page: 0,
+            processingTimeMS: 0,
+          })),
+        });
+      }
+
+      return algoliaClient.search(requests);
+    },
+  };
+
   const downloadFile = (file) => {
     const storageRef = storage.ref();
     const fileRef = storageRef.child(`design/${file}`);
@@ -72,6 +102,20 @@ const Resources = () => {
 
           <div className='resources-videos'>
             <h2>Videos</h2>
+
+            <InstantSearch searchClient={searchClient} indexName='firebase'>
+              <Row>
+                <Col>
+                  <Panel header='Category'>
+                    <RefinementList attribute='categories' />
+                  </Panel>
+                </Col>
+
+                <Col>
+                  <Hits />
+                </Col>
+              </Row>
+            </InstantSearch>
           </div>
         </Container>
       </Content>

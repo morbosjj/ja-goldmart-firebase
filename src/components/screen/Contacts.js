@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import {
-  Row,
-  Col,
-  ListGroup,
-  Container,
-  Form,
-  Button,
-  Alert,
-} from 'react-bootstrap';
+import { Row, Col, ListGroup, Container } from 'react-bootstrap';
 import { Layout } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import emailjs from 'emailjs-com';
 import moment from 'moment';
 import { firestore, timestamp } from '../../firebase/config';
+import InquiryForm from '../InquiryForm';
 import '../../css/components/Contacts.css';
 import MainContainer from '../container/MainContainer';
 
@@ -155,63 +148,12 @@ function Contacts() {
             </Col>
           </Row>
           <br />
-          <Form onSubmit={sendEmail} className='my-5'>
-            {success && (
-              <Alert variant='success'>
-                <i className='fas fa-check-circle'></i> Thank you. Your
-                submission has been received.
-              </Alert>
-            )}
 
-            <Row>
-              {/* md={5} */}
-              <Col>
-                <Form.Group controlId='full_name'>
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control type='text' name='full_name' required />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlId='phone_number'>
-                  <Form.Label>Phone Number</Form.Label>
-                  <Form.Control type='text' name='phone_number' required />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                <Form.Group controlId='email'>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type='email' name='email' required />
-                </Form.Group>
-              </Col>
-              <Col>
-                <Form.Group controlId='company_name'>
-                  <Form.Label>Company Name</Form.Label>
-                  <Form.Control type='text' name='company_name' required />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col>
-                <Form.Group controlId='inquiry'>
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control
-                    as='textarea'
-                    rows={3}
-                    name='message'
-                    required
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Button variant='custom' size='md' type='submit'>
-              {loading ? 'Please wait...' : 'Submit'}
-            </Button>
-          </Form>
+          <InquiryForm
+            submitForm={sendEmail}
+            success={success}
+            loading={loading}
+          />
         </Container>
       </Content>
     </MainContainer>

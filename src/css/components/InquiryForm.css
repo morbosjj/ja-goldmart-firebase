@@ -1,0 +1,5 @@
+.inquiry-form .form-group .form-label:after {
+  content: '*';
+  color: red;
+  margin-left: 5px;
+}

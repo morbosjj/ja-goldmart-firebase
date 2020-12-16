@@ -46,7 +46,7 @@ const InquiryForm = ({ submitForm, success, loading }) => {
 
         <Row>
           <Col>
-            <Form.Group controlId='inquiry'>
+            <Form.Group controlId='message'>
               <Form.Label>Message</Form.Label>
               <Form.Control as='textarea' rows={3} name='message' required />
             </Form.Group>

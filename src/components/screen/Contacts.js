@@ -107,6 +107,21 @@ function Contacts() {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+
+                <ListGroup.Item>
+                  <Row>
+                    <Col>B2B Online</Col>
+                    <Col md={7}>
+                      <strong>Alibaba Trade Manager Account</strong>
+                      <br />
+                      <p>Member ID: ph105705437</p>
+
+                      <strong>Trade Key</strong>
+                      <br />
+                      <p>Member ID: jari283</p>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
               </ListGroup>
             </Col>
 

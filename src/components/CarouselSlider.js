@@ -41,7 +41,7 @@ const CarouselSlider = () => {
   );
 };
 
-const Item = (props) => {
+const Item = ({ item }) => {
   return (
     <>
       <div className='overlay-image'></div>
@@ -50,16 +50,16 @@ const Item = (props) => {
         <Container>
           <Row>
             <Col>
-              <h2>{props.item.name}</h2>
-              <p>{props.item.description}</p>
+              <h2>{item.name}</h2>
+              <p>{item.description}</p>
 
-              <Link to={props.item.link}>
+              <Link to={item.link}>
                 <Button type='primary'>Check it out!</Button>
               </Link>
             </Col>
 
             <Col>
-              <Image src={props.item.image} />
+              <Image src={item.image} />
             </Col>
           </Row>
         </Container>

@@ -65,6 +65,10 @@
   line-height: 0;
 }
 
+.header-drawer .ant-drawer-content-wrapper {
+  width: 100% !important ;
+}
+
 @media (min-width: 576px) {
   .header .sub-head {
     height: 40px;
@@ -101,6 +105,9 @@
   /* .header .main-navigation {
     display: block;
   } */
+  .ant-drawer {
+    display: none;
+  }
   .header .main-navigation {
     display: flex;
     flex-direction: row;

@@ -62,12 +62,17 @@ const Navigation = () => {
           </div>
 
           <Drawer
+            className='header-drawer'
             placement='right'
-            width='432'
             closable={false}
             onClose={onClose}
             visible={visible}
           >
+            <div className='responsive-btn'>
+              <Button type='primary' onClick={onClose}>
+                <i className='fas fa-times'></i>
+              </Button>
+            </div>
             <div className='responsive-alogia-search'>
               <AlgoliaSearch />
             </div>

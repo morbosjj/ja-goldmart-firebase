@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Container, Table } from 'react-bootstrap';
+import { Row, Col, Container, Table, Card } from 'react-bootstrap';
 import { Layout } from 'antd';
 import MainContainer from '../container/MainContainer';
 import { storage } from '../../firebase/config';
@@ -9,7 +9,11 @@ import {
   Hits,
   Panel,
   RefinementList,
+  Pagination,
+  SearchBox,
+  connectStateResults,
 } from 'react-instantsearch-dom';
+import Iframe from 'react-iframe';
 import axios from 'axios';
 import '../../css/components/Resources.css';
 
@@ -20,24 +24,6 @@ const Resources = () => {
     'RKK6GIJLUG',
     '9f4da6133bd086b30b3cab41166dae33'
   );
-
-  const searchClient = {
-    search(requests) {
-      if (requests.every(({ params }) => !params.query)) {
-        return Promise.resolve({
-          results: requests.map(() => ({
-            hits: [],
-            nbHits: 0,
-            nbPages: 0,
-            page: 0,
-            processingTimeMS: 0,
-          })),
-        });
-      }
-
-      return algoliaClient.search(requests);
-    },
-  };
 
   const downloadFile = (file) => {
     const storageRef = storage.ref();
@@ -55,6 +41,40 @@ const Resources = () => {
           console.log('Download file');
         });
     });
+  };
+
+  const Results = connectStateResults(
+    ({ searchState, searchResults, children }) =>
+      searchResults && searchResults.nbHits !== 0 ? (
+        children
+      ) : !searchState.query ? (
+        <div></div>
+      ) : (
+        <div className='resources-algolia-result'>
+          No results found{' '}
+          <span className='query-output'>"{searchState.query}"</span>
+        </div>
+      )
+  );
+
+  const Hit = ({ hit }) => {
+    return (
+      <Card className='resources-video-card'>
+        <Iframe
+          url={hit.video}
+          width='100%'
+          height='200px'
+          display='initial'
+          position='relative'
+        />
+
+        <Card.Body>
+          <Card.Title as='div'>
+            <strong>{hit.full_product_name}</strong>
+          </Card.Title>
+        </Card.Body>
+      </Card>
+    );
   };
 
   return (
@@ -103,18 +123,32 @@ const Resources = () => {
           <div className='resources-videos'>
             <h2>Videos</h2>
 
-            <InstantSearch searchClient={searchClient} indexName='firebase'>
+            <InstantSearch searchClient={algoliaClient} indexName='firebase'>
               <Row>
-                <Col>
-                  <Panel header='Category'>
+                <Col md={3}>
+                  <SearchBox
+                    showLoadingIndicator={true}
+                    searchAsYouType={false}
+                    translations={{ placeholder: 'Search by Product Name' }}
+                  />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={3}>
+                  <Panel header='Categories'>
                     <RefinementList attribute='categories' />
                   </Panel>
                 </Col>
 
-                <Col>
-                  <Hits />
+                <Col className='my-3'>
+                  <Results>
+                    <Hits hitComponent={Hit} />
+                  </Results>
                 </Col>
               </Row>
+
+              <Pagination />
             </InstantSearch>
           </div>
         </Container>

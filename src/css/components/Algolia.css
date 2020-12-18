@@ -79,53 +79,35 @@
   max-width: 100%;
 }
 
-.hit-em {
-  color: #e2a400;
-  font-size: 11px;
+.algolia-result {
+  font-size: 12px;
+}
+.query-output {
+  color: red;
   font-weight: 600;
 }
 
-.hit-rating {
-  border: 1px solid rgba(226, 164, 0, 0.5);
-  border-radius: 4px;
-  margin-left: 4px;
-  padding: 0 4px;
+.ais-SearchBox-input {
+  border-radius: 0;
+}
+.ais-SearchBox-input::placeholder {
+  font-weight: 600;
+  color: rgb(85, 85, 85);
 }
 
-.hits-empty-state {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  max-width: 300px;
+.ais-Pagination-link {
+  color: black;
 }
 
-.hits-empty-state-title {
-  font-family: Hind;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0;
-  text-align: center;
+.ais-Pagination-link:hover {
+  color: #ffb400;
 }
 
-.hits-empty-state-description {
-  color: rgba(35, 37, 51, 0.6);
-  font-size: 0.875rem;
-  text-align: center;
+.ais-Pagination-item--selected .ais-Pagination-link {
+  background-color: #ffb400 !important;
+  border-color: #ffb400 !important;
 }
 
-.hits-empty-state .ais-ClearRefinements {
-  margin-top: 1rem;
-}
-
-.hits-empty-state .ais-ClearRefinements-button--disabled {
-  display: none;
-}
-
-.hits-empty-state .ais-ClearRefinements-button {
-  background: rgba(10, 8, 41, 0.04);
-  border-radius: 3px;
-  color: #21243d;
-  min-height: 48px;
-  padding: 16px 24px;
+.ais-Pagination-item:hover {
+  color: #ffb400;
 }

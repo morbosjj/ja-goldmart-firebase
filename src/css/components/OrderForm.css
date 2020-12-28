@@ -1,0 +1,64 @@
+.order {
+  background: #f5f5f5 !important;
+}
+
+.order-form-container {
+  background: #ffffff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.order-form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-form-content .about-header {
+  align-self: center;
+}
+
+.order-form-content .order-form-title {
+  margin: 20px auto;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.order-form-content .order-form .order-form-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.order-form-content .order-form .form-group .form-label,
+.order-form-content .order-form .form-label {
+  font-weight: 600;
+}
+
+.order-form-content .order-form .row {
+  margin-top: 20px;
+}
+
+.order-form-content .order-form label {
+  font-weight: 500;
+}
+
+.order-form-content .order-form label:after {
+  content: '*';
+  color: red;
+  margin-left: 5px;
+}
+
+.order-form-content .order-form .text-muted {
+  font-weight: 500;
+}
+
+.order-form-content .order-form .order-products {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.order-form-content .order-form .order-summary {
+  margin-top: 40px;
+}

@@ -25,6 +25,7 @@ import FooterSite from './components/FooterSite';
 import CategoryShop from './components/screen/CategoryShop';
 import Resources from './components/screen/Resources';
 import About from './components/screen/About';
+import OrderForm from './components/screen/OrderForm';
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         <PrivateRoute path='/admin/result' component={Result} />
         <PrivateRoute path='/admin/edit/:id' component={EditDescription} />
 
+        <Route path='/order-form' component={OrderForm} />
         <Route path='/about' component={About} />
         <Route path='/product/:name' component={ProductPage} />
         <Route path='/category/:name' component={CategoryShop} />

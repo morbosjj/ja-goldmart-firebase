@@ -14,29 +14,37 @@ const InquiryForm = ({ submitForm, success, loading }) => {
         )}
 
         <Row>
-          {/* md={5} */}
           <Col>
-            <Form.Group controlId='full_name'>
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control type='text' name='full_name' required />
+            <Form.Group controlId='firstname'>
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type='text' name='firstname' required />
             </Form.Group>
           </Col>
+
           <Col>
-            <Form.Group controlId='phone_number'>
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control type='text' name='phone_number' required />
+            <Form.Group controlId='lastname'>
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type='text' name='lastname' required />
             </Form.Group>
           </Col>
         </Row>
 
-        <Row>
-          <Col>
+        <Row xs={1} md={2}>
+          <Col sm>
             <Form.Group controlId='email'>
               <Form.Label>Email</Form.Label>
               <Form.Control type='email' name='email' required />
             </Form.Group>
           </Col>
-          <Col>
+
+          <Col sm>
+            <Form.Group controlId='phone_number'>
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control type='text' name='phone_number' required />
+            </Form.Group>
+          </Col>
+
+          <Col sm>
             <Form.Group controlId='company_name'>
               <Form.Label>Company Name</Form.Label>
               <Form.Control type='text' name='company_name' required />

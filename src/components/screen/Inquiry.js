@@ -40,7 +40,8 @@ function Inquiry({ match }) {
                       {/* <h4 className='my-3'>Information</h4> */}
 
                       <p>
-                        <strong>Customer Name: </strong> {inquiry.full_name}
+                        <strong>Customer Name: </strong> {inquiry.firstname}{' '}
+                        {inquiry.lastname}
                       </p>
 
                       <p>

@@ -26,9 +26,14 @@ function Inquiries() {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'full_name',
-      key: 'full_name',
+      title: 'First Name',
+      dataIndex: 'firstname',
+      key: 'firstname',
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'lastname',
+      key: 'lastname',
     },
 
     { title: 'Email', dataIndex: 'email', key: 'email' },

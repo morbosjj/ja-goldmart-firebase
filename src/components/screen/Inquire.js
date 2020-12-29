@@ -21,7 +21,14 @@ function Inquire() {
 
   async function sendEmail(e) {
     e.preventDefault();
-    const { full_name, phone_number, email, company_name, message } = e.target;
+    const {
+      firstname,
+      lastname,
+      phone_number,
+      email,
+      company_name,
+      message,
+    } = e.target;
     const date = moment().format('MMMM Do YYYY, h:mm:ss a');
     const createdAt = timestamp();
     const inquiry_id = uuidv4();
@@ -41,7 +48,8 @@ function Inquire() {
 
       await firestore.collection('inquiries').add({
         inquiry_id,
-        full_name: full_name.value,
+        firstname: firstname.value,
+        lastname: lastname.value,
         phone_number: phone_number.value,
         email: email.value,
         company_name: company_name.value,

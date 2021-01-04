@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, Select, Button } from 'antd';
+import { Modal, Form, Select, Button, InputNumber } from 'antd';
 import InputField from '../component/InputField';
 import { ErrorMessage } from '@hookform/error-message';
 import { useForm, Controller } from 'react-hook-form';
@@ -117,7 +117,8 @@ function EditProduct({ title, visible, setVisible, onCancel, data }) {
           hasFeedback={!errors.price && 'success'}
           validateStatus={errors.price && 'error'}
         >
-          <InputField
+          <Controller
+            as={InputNumber}
             name='price'
             control={control}
             defaultValue={price}
@@ -138,7 +139,8 @@ function EditProduct({ title, visible, setVisible, onCancel, data }) {
           hasFeedback={!errors.stock && 'success'}
           validateStatus={errors.stock && 'error'}
         >
-          <InputField
+          <Controller
+            as={InputNumber}
             name='stock'
             control={control}
             defaultValue={stock}
@@ -151,6 +153,7 @@ function EditProduct({ title, visible, setVisible, onCancel, data }) {
               },
             }}
           />
+
           <ErrorMessage errors={errors} name='stock' as='p' />
         </Form.Item>
 

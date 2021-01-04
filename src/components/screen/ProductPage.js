@@ -1,6 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Breadcrumb } from 'antd';
-import { Row, Col, ListGroup, Container, Card, Button } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  ListGroup,
+  Container,
+  Card,
+  Button,
+  Form,
+} from 'react-bootstrap';
 import ReactHtmlParser from 'react-html-parser';
 import ImageGallery from 'react-image-gallery';
 import { Link } from 'react-router-dom';
@@ -12,6 +20,7 @@ import MainContainer from '../container/MainContainer';
 import '../../css/components/ProductPage.css';
 
 function ProductPage({ match }) {
+  const [qty, setQty] = useState(1);
   const name = replaceToSpace(match.params.name);
   const {
     docs,
@@ -89,6 +98,29 @@ function ProductPage({ match }) {
                               </Col>
                             </Row>
                           </ListGroup.Item>
+                          {console.log(product.stock)}
+                          {product.stock > 0 && (
+                            <ListGroup.Item>
+                              <Row>
+                                <Col>Qty</Col>
+                                <Col>
+                                  <Form.Control
+                                    as='select'
+                                    value={qty}
+                                    onChange={(e) => setQty(e.target.value)}
+                                  >
+                                    {[...Array(product.stock).keys()].map(
+                                      (x) => (
+                                        <option key={x + 1} value={x + 1}>
+                                          {x + 1}
+                                        </option>
+                                      )
+                                    )}
+                                  </Form.Control>
+                                </Col>
+                              </Row>
+                            </ListGroup.Item>
+                          )}
 
                           <ListGroup.Item className='py-3'>
                             <Link to='/inquire'>
@@ -96,6 +128,7 @@ function ProductPage({ match }) {
                                 type='button'
                                 variant='custom'
                                 size='md'
+                                disabled={product.stock === 0}
                                 onClick={() => getInquiryProduct(product)}
                                 block
                               >

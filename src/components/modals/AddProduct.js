@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, Select, Button } from 'antd';
+import { Modal, Form, Select, Button, InputNumber, Input } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDataContext } from '../Context';
@@ -31,6 +31,8 @@ const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
   }, [product, setVisible]);
 
   const onSubmit = (data) => {
+    console.log(data);
+    return;
     if (!data) {
       return;
     }
@@ -107,7 +109,8 @@ const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
           hasFeedback={!errors.price && 'success'}
           validateStatus={errors.price && 'error'}
         >
-          <InputField
+          <Controller
+            as={InputNumber}
             name='price'
             control={control}
             maxLength={7}
@@ -128,7 +131,8 @@ const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
           hasFeedback={!errors.stock && 'success'}
           validateStatus={errors.stock && 'error'}
         >
-          <InputField
+          <Controller
+            as={InputNumber}
             name='stock'
             control={control}
             maxLength={2}
@@ -140,6 +144,7 @@ const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
               },
             }}
           />
+
           <ErrorMessage errors={errors} name='stock' as='p' />
         </Form.Item>
 

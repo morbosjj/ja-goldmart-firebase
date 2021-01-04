@@ -25,6 +25,7 @@ const EditDescription = () => {
     // register('images', { required: 'Images is a required field' });
   }, [register]);
 
+  console.log(product);
   const onSubmit = (data) => {
     setValues(data);
     push(`/admin/result/${id}`);

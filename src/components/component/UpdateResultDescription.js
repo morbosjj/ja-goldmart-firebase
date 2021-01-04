@@ -9,9 +9,9 @@ import '../../css/components/admin/ResultDescription.css';
 
 function UpdateResultDescription({
   id,
-  product,
+  editData,
   setProduct,
-  setValues,
+  setValueEditModal,
   getDesc,
 }) {
   const {
@@ -24,11 +24,11 @@ function UpdateResultDescription({
     description,
     feature,
     video,
-  } = product;
+  } = editData;
 
   const { handleSubmit } = useForm();
   const history = useHistory();
-  console.log(product);
+  console.log(editData);
   const updateProduct = () => {
     const createdAt = timestamp();
 
@@ -55,7 +55,7 @@ function UpdateResultDescription({
 
   const backPage = () => {
     getDesc(description);
-    setValues(product);
+    setValueEditModal(editData);
     history.goBack();
   };
 
@@ -63,7 +63,7 @@ function UpdateResultDescription({
     <div className='result-container'>
       <h2>Update Details</h2>
 
-      <ResultDescription layout='vertical' products={product} />
+      <ResultDescription layout='vertical' products={editData} />
 
       <SubmitForm
         titleSubmit='Update Product'

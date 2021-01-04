@@ -8,7 +8,7 @@ import useFirestore from '../../hooks/useFirestore';
 import { useDataContext } from '../Context';
 
 function EditProduct({ title, visible, setVisible, onCancel, data }) {
-  const { setValues, getDesc, getImages } = useDataContext();
+  const { setValueEditModal, getDesc, getImages } = useDataContext();
   const {
     id,
     model_name,
@@ -37,7 +37,7 @@ function EditProduct({ title, visible, setVisible, onCancel, data }) {
     }
     getDesc(description);
     getImages(images);
-    setValues(value);
+    setValueEditModal(value);
     push(`/admin/edit/${id}`);
   };
 

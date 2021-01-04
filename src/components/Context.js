@@ -9,7 +9,10 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
-  const [product, setProduct] = useState({});
+  const [addData, setAddData] = useState({});
+  const [addModal, setAddModal] = useState(false);
+  const [editData, setEditData] = useState({});
+  const [editModal, setEditModal] = useState(false);
   const [inquire, setInquire] = useState({});
   const [docs, setDocs] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -17,6 +20,20 @@ export const DataProvider = ({ children }) => {
   const [desc, setDesc] = useState('');
   const [images, setImages] = useState();
   const [error, setError] = useState();
+
+  const setValueAddModal = (values) => {
+    setAddData((prevData) => ({
+      ...prevData,
+      ...values,
+    }));
+  };
+
+  const setValueEditModal = (values) => {
+    setEditData((prevData) => ({
+      ...prevData,
+      ...values,
+    }));
+  };
 
   const signup = (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -50,13 +67,6 @@ export const DataProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
-
-  const setValues = (values) => {
-    setProduct((prevData) => ({
-      ...prevData,
-      ...values,
-    }));
-  };
 
   const getFirestoreCollection = (collection) => {
     firestore
@@ -113,7 +123,14 @@ export const DataProvider = ({ children }) => {
   };
 
   const data = {
-    product,
+    addData,
+    setAddData,
+    addModal,
+    editData,
+    setEditData,
+    editModal,
+    setValueAddModal,
+    setValueEditModal,
     currentUser,
     signup,
     login,
@@ -121,7 +138,6 @@ export const DataProvider = ({ children }) => {
     resetPassword,
     updateEmail,
     updatePassword,
-    setValues,
     docs,
     error,
     categories,

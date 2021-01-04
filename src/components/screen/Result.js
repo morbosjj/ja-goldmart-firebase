@@ -10,25 +10,41 @@ import '../../css/components/admin/Result.css';
 const { Content } = Layout;
 
 function Result() {
-  const { product, setProduct, setValues, getDesc } = useDataContext();
+  const {
+    addData,
+    setAddData,
+    setValueAddModal,
+    editData,
+    setValueEditModal,
+    setProduct,
+    setValues,
+    getDesc,
+  } = useDataContext();
   const match = useRouteMatch('/admin/result/:id');
   const id = match ? match.params.id : '';
 
   return (
     <AdminContainer>
       <Content className='layout-content'>
-        {Object.keys(product).length === 0 && <Redirect to='/PageNotFound' />}
+        {/* {Object.keys(addData).length === 0 ||
+          (Object.keys(editData).length === 0 && (
+            <Redirect to='/PageNotFound' />
+          ))} */}
 
         {match ? (
           <UpdateResultDescription
             id={id}
-            product={product}
+            editData={editData}
             setProduct={setProduct}
-            setValues={setValues}
+            setValueEditModal={setValueEditModal}
             getDesc={getDesc}
           />
         ) : (
-          <ProductResultDescription product={product} setProduct={setProduct} />
+          <ProductResultDescription
+            addData={addData}
+            setAddData={setAddData}
+            setValueAddModal={setValueAddModal}
+          />
         )}
       </Content>
     </AdminContainer>

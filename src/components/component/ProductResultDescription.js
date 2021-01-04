@@ -9,7 +9,7 @@ import { firestore, timestamp } from '../../firebase/config';
 import '../../css/components/admin/ResultDescription.css';
 import SubmitForm from './SubmitForm';
 
-function ProductResultDescription({ product, setProduct }) {
+function ProductResultDescription({ addData, setAddData, setValueAddModal }) {
   const history = useHistory();
   const { handleSubmit } = useForm();
   const {
@@ -22,7 +22,7 @@ function ProductResultDescription({ product, setProduct }) {
     description,
     feature,
     video,
-  } = product;
+  } = addData;
   const [disable, setDisable] = useState(true);
   const { upload } = useStorage(images, product_name);
 
@@ -51,8 +51,8 @@ function ProductResultDescription({ product, setProduct }) {
       createdAt,
     });
     message.success('Added product successfully');
-    setProduct({});
-    history.push('/products');
+    setAddData({});
+    history.push('/admin/products');
   };
 
   const backPage = () => {
@@ -63,7 +63,7 @@ function ProductResultDescription({ product, setProduct }) {
       <h2>Product Details</h2>
       <ResultDescription
         layout='vertical'
-        products={product}
+        products={addData}
         imagesPreview={images}
       />
 

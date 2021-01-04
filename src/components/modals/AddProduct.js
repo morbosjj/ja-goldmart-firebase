@@ -9,35 +9,35 @@ import InputField from '../component/InputField';
 import '../../css/components/admin/Modal.css';
 
 const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
-  const { product, setValues } = useDataContext();
+  const { addData, setValueAddModal } = useDataContext();
   const { docs } = useFirestore('categories');
   const { register, control, handleSubmit, errors } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      model_name: product.model_name,
-      product_name: product.product_name,
-      category: product.category,
-      price: product.price,
-      stock: product.stock,
-      video: product.video,
-      feature: product.feature,
+      model_name: addData.model_name,
+      product_name: addData.product_name,
+      category: addData.category,
+      price: addData.price,
+      stock: addData.stock,
+      video: addData.video,
+      feature: addData.feature,
     },
   });
   const options = docs.map(({ name }) => ({ value: name, label: name }));
   const { push } = useHistory();
 
   useEffect(() => {
-    Object.keys(product).length === 0 ? setVisible(false) : setVisible(true);
-  }, [product, setVisible]);
+    Object.keys(addData).length === 0 ? setVisible(false) : setVisible(true);
+  }, [addData, setVisible]);
 
   const onSubmit = (data) => {
-    console.log(data);
-    return;
+    // console.log(data);
+    // return;
     if (!data) {
       return;
     }
 
-    setValues(data);
+    setValueAddModal(data);
     push('/admin/description');
   };
 

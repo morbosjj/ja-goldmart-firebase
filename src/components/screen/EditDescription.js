@@ -13,7 +13,7 @@ import '../../css/components/admin/Description.css';
 const { Content } = Layout;
 
 const EditDescription = () => {
-  const { product, desc, images, setValues } = useDataContext();
+  const { editData, desc, images, setValueEditModal } = useDataContext();
   const { register, setValue, handleSubmit, errors } = useForm({
     defaultValues: { description: desc, images },
   });
@@ -24,24 +24,24 @@ const EditDescription = () => {
     register('description', { required: 'Description is a required field' });
     register('images');
   }, [register]);
-  console.log(images);
+  console.log(editData);
   const onSubmit = (data) => {
-    setValues(data);
+    setValueEditModal(data);
     push(`/admin/result/${id}`);
   };
 
   return (
     <AdminContainer>
       <Content className='layout-content'>
-        {Object.keys(product).length === 0 && <Redirect to='/PageNotFound' />}
+        {Object.keys(editData).length === 0 && <Redirect to='/PageNotFound' />}
 
-        <ProductView key={id} product={product} />
+        <ProductView key={id} product={editData} />
 
         <form onSubmit={handleSubmit(onSubmit)} className='ja-description'>
           <Form.Item>
             <Editor
               setValue={setValue}
-              desc={product.description ? product.description : desc}
+              desc={editData.description ? editData.description : desc}
             />
             <ErrorMessage
               errors={errors}

@@ -25,7 +25,7 @@ const EditImagesList = ({ images, setValue }) => {
   return (
     <div>
       <Upload
-        listType="picture-card"
+        listType='picture-card'
         fileList={files}
         onChange={handleChange}
         onRemove={removeFile}
@@ -34,7 +34,7 @@ const EditImagesList = ({ images, setValue }) => {
           <>
             {files.length >= 3 ? null : (
               <span>
-                <UploadOutlined /> Choose image
+                <UploadOutlined />
               </span>
             )}
           </>

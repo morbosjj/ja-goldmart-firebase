@@ -15,17 +15,16 @@ const { Content } = Layout;
 const EditDescription = () => {
   const { product, desc, images, setValues } = useDataContext();
   const { register, setValue, handleSubmit, errors } = useForm({
-    defaultValues: { description: desc },
+    defaultValues: { description: desc, images },
   });
   const { id } = useParams();
   const { push } = useHistory();
 
   useEffect(() => {
     register('description', { required: 'Description is a required field' });
-    // register('images', { required: 'Images is a required field' });
+    register('images');
   }, [register]);
-
-  console.log(product);
+  console.log(images);
   const onSubmit = (data) => {
     setValues(data);
     push(`/admin/result/${id}`);

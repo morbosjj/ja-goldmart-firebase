@@ -28,7 +28,7 @@ function UpdateResultDescription({
 
   const { handleSubmit } = useForm();
   const history = useHistory();
-
+  console.log(product);
   const updateProduct = () => {
     const createdAt = timestamp();
 
@@ -46,8 +46,8 @@ function UpdateResultDescription({
         createdAt,
       });
       message.success(`Update category successfully`);
-      setProduct({});
-      history.push('/products');
+      // setProduct({});
+      history.push('/admin/products');
     } else {
       message.error('Cannot update this product');
     }

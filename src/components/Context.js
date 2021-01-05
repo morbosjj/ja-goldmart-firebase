@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
-import { auth, firestore } from '../firebase/config';
+import { auth, googleProvider, firestore } from '../firebase/config';
 
 const Context = createContext();
 
@@ -35,6 +35,22 @@ export const DataProvider = ({ children }) => {
     }));
   };
 
+  const loginGoogle = () => {
+    auth
+      .signInWithPopup(googleProvider)
+      .then((result) => {
+        var credential = result.credential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const signup = (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
@@ -57,6 +73,12 @@ export const DataProvider = ({ children }) => {
 
   const updatePassword = (password) => {
     return currentUser.updatePassword(password);
+  };
+
+  const updateUserProfile = (fullname) => {
+    return currentUser.updateProfile({
+      displayName: fullname,
+    });
   };
 
   useEffect(() => {
@@ -132,12 +154,14 @@ export const DataProvider = ({ children }) => {
     setValueAddModal,
     setValueEditModal,
     currentUser,
+    loginGoogle,
     signup,
     login,
     logout,
     resetPassword,
     updateEmail,
     updatePassword,
+    updateUserProfile,
     docs,
     error,
     categories,

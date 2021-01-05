@@ -4,7 +4,7 @@ import Logo from '../../img/logo.png';
 
 const HeaderAuth = () => {
   return (
-    <Container className='d-flex align-items-center justify-content-center my-3'>
+    <Container className='d-flex align-items-center justify-content-center mb-3'>
       <Row>
         <Col>
           <Image src={Logo} fluid />

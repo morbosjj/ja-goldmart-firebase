@@ -1,3 +1,36 @@
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dashboard .profile-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 20px;
+}
+.dashboard .profile-nav p {
+  margin: 0;
+  padding-right: 20px;
+  padding-left: 12px;
+}
+
+.dashboard .profile-nav p:hover {
+  color: #ffb401;
+  cursor: pointer;
+}
+
+.dashboard .profile-nav .ant-dropdown {
+  top: 49px !important;
+}
+
+.dashboard .profile-nav img {
+  width: 40px;
+  height: 40px;
+}
+
 .menu-admin {
   font-size: 18px;
   line-height: 64px;

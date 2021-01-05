@@ -6,9 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UpdateProfile = () => {
   const emailRef = useRef();
+  const fullNameRef = useRef();
   const passwordRef = useRef();
   const passwordConfrimRef = useRef();
-  const { currentUser, updateEmail, updatePassword } = useDataContext();
+  const {
+    currentUser,
+    updateEmail,
+    updatePassword,
+    updateUserProfile,
+  } = useDataContext();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -29,6 +35,10 @@ const UpdateProfile = () => {
     }
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value));
+    }
+
+    if (fullNameRef.current.value) {
+      promises.push(updateUserProfile(fullNameRef.current.value));
     }
 
     Promise.all(promises)
@@ -52,6 +62,14 @@ const UpdateProfile = () => {
           {error && <Alert variant='danger'>{error}</Alert>}
 
           <Form onSubmit={handleSubmit}>
+            <Form.Group id='fullname'>
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control
+                type='text'
+                ref={fullNameRef}
+                defaultValue={currentUser.displayName}
+              />
+            </Form.Group>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -86,7 +104,7 @@ const UpdateProfile = () => {
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>
-        <Link to='/'>Cancel</Link>
+        <Link to='/dashboard'>Cancel</Link>
       </div>
     </>
   );

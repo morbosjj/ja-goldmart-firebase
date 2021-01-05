@@ -31,12 +31,12 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path='/register' component={Signup} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/forgot-password' component={ForgotPassword} />
+        {/* <Route exact path='/register' component={Signup} /> */}
+        <Route exact path='/admin/login' component={Login} />
+        {/* <Route exact path='/forgot-password' component={ForgotPassword} /> */}
         <PrivateRoute path='/update-profile' component={UpdateProfile} />
 
-        <PrivateRoute path='/dashboard' component={Dashboard} />
+        <PrivateRoute path='/admin/dashboard' component={Dashboard} />
         <PrivateRoute path='/admin/inquiries/:id' component={Inquiry} />
         <PrivateRoute path='/admin/inquiries' component={Inquiries} />
         <PrivateRoute path='/admin/products' component={Products} />

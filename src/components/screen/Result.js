@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import { useDataContext } from '../Context';
-import { Redirect, useRouteMatch } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import ProductResultDescription from '../component/ProductResultDescription';
 import UpdateResultDescription from '../component/UpdateResultDescription';
 import '../../css/components/admin/Result.css';
@@ -17,7 +17,6 @@ function Result() {
     editData,
     setValueEditModal,
     setProduct,
-    setValues,
     getDesc,
   } = useDataContext();
   const match = useRouteMatch('/admin/result/:id');

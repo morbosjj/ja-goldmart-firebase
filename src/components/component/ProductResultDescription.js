@@ -37,6 +37,7 @@ function ProductResultDescription({ addData, setAddData, setValueAddModal }) {
   const addProduct = async () => {
     const createdAt = timestamp();
     const full_product_name = `${model_name} ${product_name}`;
+
     await firestore.collection('products').add({
       model_name,
       product_name,

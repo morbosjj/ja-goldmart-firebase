@@ -21,7 +21,6 @@ function Inquiry({ match }) {
     getFirestoreQuery('inquiries', 'inquiry_id', inquiryId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   console.log(docs);
   return (
     <AdminContainer>
@@ -84,15 +83,15 @@ function Inquiry({ match }) {
                     ) : (
                       <ListGroup.Item>
                         <h4>Inquire Items</h4>
-
+                        {console.log(inquiry.inquire)}
                         <ListGroup variant='flush' className='my-3'>
                           <ListGroup.Item key={inquiry.inquiry_id}>
                             <Row>
-                              {inquiry.inquire.images ? (
+                              {inquiry.inquire.product.images ? (
                                 <Col md={2}>
                                   <Image
-                                    src={inquiry.inquire.images[0].url}
-                                    alt={inquiry.inquire.images[0].name}
+                                    src={inquiry.inquire.product.images[0].url}
+                                    alt={inquiry.inquire.product.images[0].name}
                                     fluid
                                     rounded
                                   />
@@ -103,13 +102,18 @@ function Inquiry({ match }) {
 
                               <Col>
                                 <Link
-                                  to={`/shop/${inquiry.inquire.full_product_name}`}
+                                  to={`/shop/${inquiry.inquire.product.full_product_name}`}
                                 >
-                                  {inquiry.inquire.full_product_name}
+                                  {inquiry.inquire.product.full_product_name}
                                 </Link>
                               </Col>
 
-                              <Col md={4}>₱{inquiry.inquire.price}</Col>
+                              <Col md={4}>
+                                {inquiry.inquire.qty} x ₱
+                                {inquiry.inquire.product.price} = ₱
+                                {inquiry.inquire.qty *
+                                  inquiry.inquire.product.price}
+                              </Col>
                             </Row>
                           </ListGroup.Item>
                         </ListGroup>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDataContext } from './Context';
@@ -6,7 +6,8 @@ import { replaceToDash } from './Helper';
 import '../css/components/Product.css';
 
 export default function Product({ item }) {
-  const { getInquiryProduct } = useDataContext();
+  const { addtoInquire } = useDataContext();
+  const [qty, setQty] = useState(1);
 
   return (
     <Card className='my-3 p-1 rounded product-card'>
@@ -37,7 +38,8 @@ export default function Product({ item }) {
             type='button'
             variant='custom'
             size='md'
-            onClick={() => getInquiryProduct(item)}
+            disabled={item.stock === 0}
+            onClick={() => addtoInquire(item, qty)}
             block
           >
             Inquire now

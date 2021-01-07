@@ -26,7 +26,7 @@ function ProductPage({ match }) {
     docs,
     loading,
     error,
-    getInquiryProduct,
+    addtoInquire,
     getFirestoreQuery,
   } = useDataContext();
   // const product = products.find((value) => value.product_name === name);
@@ -98,7 +98,7 @@ function ProductPage({ match }) {
                               </Col>
                             </Row>
                           </ListGroup.Item>
-                          {console.log(product.stock)}
+
                           {product.stock > 0 && (
                             <ListGroup.Item>
                               <Row>
@@ -107,7 +107,9 @@ function ProductPage({ match }) {
                                   <Form.Control
                                     as='select'
                                     value={qty}
-                                    onChange={(e) => setQty(e.target.value)}
+                                    onChange={(e) =>
+                                      setQty(Number(e.target.value))
+                                    }
                                   >
                                     {[...Array(product.stock).keys()].map(
                                       (x) => (
@@ -129,7 +131,7 @@ function ProductPage({ match }) {
                                 variant='custom'
                                 size='md'
                                 disabled={product.stock === 0}
-                                onClick={() => getInquiryProduct(product)}
+                                onClick={() => addtoInquire(product, qty)}
                                 block
                               >
                                 Inquire Now

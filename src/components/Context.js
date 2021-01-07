@@ -132,8 +132,11 @@ export const DataProvider = ({ children }) => {
       });
   };
 
-  const getInquiryProduct = (product) => {
-    setInquire(product);
+  const addtoInquire = (product, qty) => {
+    setInquire({
+      product,
+      qty,
+    });
   };
 
   const getDesc = (value) => {
@@ -169,7 +172,7 @@ export const DataProvider = ({ children }) => {
     images,
     loading,
     inquire,
-    getInquiryProduct,
+    addtoInquire,
     getFirestoreCollection,
     getFirestoreQuery,
     getDesc,

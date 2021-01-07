@@ -83,16 +83,17 @@ function Inquire() {
 
               <br />
 
-              {inquire.model_name ? (
+              {inquire.product ? (
                 <p>
                   Product Name:{' '}
                   <strong>
                     <Link
                       to={`/product/${replaceToDash(
-                        inquire.full_product_name
+                        inquire.product.full_product_name
                       )}`}
                     >
-                      {inquire.model_name} {inquire.product_name}
+                      {inquire.product.model_name}{' '}
+                      {inquire.product.product_name}
                     </Link>
                   </strong>
                 </p>

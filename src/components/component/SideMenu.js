@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import { Image } from 'react-bootstrap';
 import {
   DashboardFilled,
   UserOutlined,
   MailOutlined,
   InboxOutlined,
 } from '@ant-design/icons';
+import Logo from '../../img/logo.png';
 import useHistoryLink from '../../hooks/useHistoryLink';
 
 const { Sider } = Layout;
@@ -22,6 +24,12 @@ const SideMenu = ({ collapsed }) => {
       collapsed={collapsed}
       className='sider-admin'
     >
+      <Link to='/admin/dashboard'>
+        <div className='companny-logo'>
+          <Image src={Logo} fluid />
+        </div>
+      </Link>
+
       <Menu
         theme='light'
         mode='inline'
@@ -29,7 +37,7 @@ const SideMenu = ({ collapsed }) => {
         selectedKeys={[path]}
       >
         <Menu.Item key='dashboard' icon={<DashboardFilled />}>
-          <Link to='/dashboard'>Dashboard</Link>
+          <Link to='/admin/dashboard'>Dashboard</Link>
         </Menu.Item>
         <Menu.Item key='inquiries' icon={<MailOutlined />}>
           <Link to='/admin/inquiries'>Inquiry</Link>

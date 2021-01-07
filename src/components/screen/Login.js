@@ -23,9 +23,8 @@ const Signup = () => {
         <Card.Body>
           <HeaderAuth />
 
-          <p className='text-center mb-4'>
-            Welcome Back, Please login to your account.
-          </p>
+          <h2>Welcome back!</h2>
+          <p>Please sign in to continue</p>
 
           {error && <Alert variant='danger'>{error}</Alert>}
 

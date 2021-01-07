@@ -31,11 +31,21 @@ const MenuToggle = ({ collapsed, setCollapsed, MenuToggleRef }) => {
   };
 
   const profileMenu = (
-    <Menu>
+    <Menu className='profile-menu'>
+      <div className='profile-header'>
+        <div className='img-user'>
+          <Image src={currentUser.photoURL} roundedCircle fluid />
+        </div>
+        <h6>{currentUser.displayName}</h6>
+      </div>
       <Menu.Item>
-        <Link to='/update-profile'>Profile</Link>
+        <Link to='/update-profile'>
+          <i className='fas fa-user-circle'></i> Profile
+        </Link>
       </Menu.Item>
-      <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
+      <Menu.Item onClick={handleLogout}>
+        <i className='fas fa-sign-out-alt'></i> Logout
+      </Menu.Item>
     </Menu>
   );
   return (
@@ -54,15 +64,19 @@ const MenuToggle = ({ collapsed, setCollapsed, MenuToggleRef }) => {
           overlay={profileMenu}
           trigger={['click']}
           placement='bottomLeft'
-          overlayStyle={{ top: 49 }}
+          overlayStyle={{ top: 49, width: 200 }}
           arrow
         >
-          <p>
-            {currentUser.displayName} <i className='fa fa-chevron-down'></i>
-          </p>
+          <Image
+            className='rounded-background-image'
+            src={currentUser.photoURL}
+            roundedCircle
+            fluid
+          />
         </Dropdown>
-
-        <Image src={currentUser.photoURL} roundedCircle fluid />
+        {/* <p>
+          {currentUser.displayName} <i className='fa fa-chevron-down'></i>
+        </p> */}
       </div>
     </Header>
   );

@@ -18,7 +18,7 @@ const AdminContainer = ({ children, title }) => {
           MenuToggleRef={MenuToggleRef}
         />
 
-        <h3 className='m-4'>{title}</h3>
+        {title ? <h3 className='m-4'>{title}</h3> : ''}
 
         {children}
       </Layout>

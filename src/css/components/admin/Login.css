@@ -5,3 +5,16 @@
   width: 170px;
   height: 170px;
 }
+.login-page h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1c273c;
+  letter-spacing: -1px;
+  margin-bottom: 3px;
+}
+.login-page p {
+  font-weight: 400;
+  color: #1c273c;
+  margin-bottom: 25px;
+}

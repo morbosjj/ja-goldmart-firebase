@@ -22,6 +22,7 @@ function Inquiry({ match }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(docs);
   return (
     <AdminContainer>
       <Content className='layout-content'>
@@ -78,12 +79,12 @@ function Inquiry({ match }) {
                       </a> */}
                     </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <h4>Inquire Items</h4>
+                    {Object.keys(inquiry.inquire).length === 0 ? (
+                      <Message variant='danger'>No items</Message>
+                    ) : (
+                      <ListGroup.Item>
+                        <h4>Inquire Items</h4>
 
-                      {!inquiry.inquire ? (
-                        <Message variant='danger'>No items</Message>
-                      ) : (
                         <ListGroup variant='flush' className='my-3'>
                           <ListGroup.Item key={inquiry.inquiry_id}>
                             <Row>
@@ -112,8 +113,8 @@ function Inquiry({ match }) {
                             </Row>
                           </ListGroup.Item>
                         </ListGroup>
-                      )}
-                    </ListGroup.Item>
+                      </ListGroup.Item>
+                    )}
                   </ListGroup>
                 </Col>
               </Row>

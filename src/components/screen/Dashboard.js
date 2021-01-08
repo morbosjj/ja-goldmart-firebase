@@ -9,7 +9,7 @@ const Dashboard = () => {
     <AdminContainer>
       <div className='dashboard-page'>
         <div className='dashboard-title'>
-          <h2 class='dashboard-welcome'>Hi, welcome back</h2>
+          <h2 className='dashboard-welcome'>Hi, welcome back</h2>
           {/* <p class='dashboard-text'>Your currently status</p> */}
         </div>
 

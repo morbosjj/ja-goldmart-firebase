@@ -21,6 +21,26 @@
 .btn-md:hover {
   text-decoration: underline !important;
 }
+.inquiry-btn {
+  background-color: #ffb400 !important;
+  border-color: #fff !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+.order-btn {
+  background-color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+.inquiry-btn:hover,
+.order-btn:hover {
+  text-decoration: underline !important;
+}
+.inquiry-btn:disabled,
+.order-btn:disabled {
+  text-decoration: none !important;
+}
 
 /* Admin */
 

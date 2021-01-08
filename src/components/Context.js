@@ -132,6 +132,18 @@ export const DataProvider = ({ children }) => {
       });
   };
 
+  const inquiryOnly = (id) => {
+    firestore
+      .collection('inquiries')
+      .doc(id)
+      .update({
+        isInquiryOnly: true,
+      })
+      .then(() => {
+        console.log('Document successfully update');
+      });
+  };
+
   const addtoInquire = (product, qty) => {
     setItem({
       product,
@@ -177,6 +189,7 @@ export const DataProvider = ({ children }) => {
     getFirestoreQuery,
     getDesc,
     getImages,
+    inquiryOnly,
   };
 
   return (

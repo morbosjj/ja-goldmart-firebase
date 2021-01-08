@@ -11,7 +11,13 @@ import { replaceToDash } from '../Helper';
 const { Content } = Layout;
 
 function Inquiry({ match }) {
-  const { docs, loading, error, getFirestoreQuery } = useDataContext();
+  const {
+    docs,
+    loading,
+    error,
+    getFirestoreQuery,
+    inquiryOnly,
+  } = useDataContext();
   const inquiryId = match.params.id;
 
   // let image = images
@@ -31,11 +37,12 @@ function Inquiry({ match }) {
         ) : (
           <div>
             {error && <Message variant='danger'>Inquiry Not found</Message>}
+
             {docs.map((inquiry) => (
               <Row>
                 <h2 className='my-3'>Inquiry {inquiryId} </h2>
 
-                <Col md={8}>
+                <Col md={7}>
                   <ListGroup variant='flush'>
                     <ListGroup.Item>
                       {/* <h4 className='my-3'>Information</h4> */}
@@ -149,12 +156,27 @@ function Inquiry({ match }) {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                          <Button type='button' className='btn btn-block'>
-                            Inquire Only
-                          </Button>
-                          <Button type='button' className='btn btn-block'>
-                            Place Order
-                          </Button>
+                          {!inquiry.isInquiryOnly && (
+                            <Row>
+                              <Col>
+                                <Button
+                                  type='button'
+                                  className='btn btn-block inquiry-btn'
+                                  onClick={() => inquiryOnly(inquiry.id)}
+                                >
+                                  Inquire Only
+                                </Button>
+                              </Col>
+                              <Col>
+                                <Button
+                                  type='button'
+                                  className='btn btn-block order-btn'
+                                >
+                                  Place Order
+                                </Button>
+                              </Col>
+                            </Row>
+                          )}
                         </ListGroup.Item>
                       </ListGroup>
                     </Card>

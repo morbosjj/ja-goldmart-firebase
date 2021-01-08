@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { Layout } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import { useDataContext } from '../Context';
 import Loader from '../Loader';
 import Message from '../Message';
 import { Link } from 'react-router-dom';
+import { replaceToDash } from '../Helper';
 
 const { Content } = Layout;
 
@@ -78,49 +79,87 @@ function Inquiry({ match }) {
                       </a> */}
                     </ListGroup.Item>
 
-                    {Object.keys(inquiry.inquire).length === 0 ? (
+                    {inquiry.inquire.length === 0 ? (
                       <Message variant='danger'>No items</Message>
                     ) : (
                       <ListGroup.Item>
                         <h4>Inquire Items</h4>
                         {console.log(inquiry.inquire)}
-                        <ListGroup variant='flush' className='my-3'>
-                          <ListGroup.Item key={inquiry.inquiry_id}>
-                            <Row>
-                              {inquiry.inquire.product.images ? (
-                                <Col md={2}>
-                                  <Image
-                                    src={inquiry.inquire.product.images[0].url}
-                                    alt={inquiry.inquire.product.images[0].name}
-                                    fluid
-                                    rounded
-                                  />
+
+                        {inquiry.inquire.map((item) => (
+                          <ListGroup variant='flush' className='my-3'>
+                            <ListGroup.Item key={inquiry.inquiry_id}>
+                              <Row>
+                                {item.product.images ? (
+                                  <Col md={2}>
+                                    <Image
+                                      src={item.product.images[0].url}
+                                      alt={item.product.images[0].name}
+                                      fluid
+                                      rounded
+                                    />
+                                  </Col>
+                                ) : (
+                                  'No Available Image'
+                                )}
+
+                                <Col>
+                                  <Link
+                                    to={`/product/${replaceToDash(
+                                      item.product.full_product_name
+                                    )}`}
+                                  >
+                                    {item.product.full_product_name}
+                                  </Link>
                                 </Col>
-                              ) : (
-                                'No Available Image'
-                              )}
 
-                              <Col>
-                                <Link
-                                  to={`/shop/${inquiry.inquire.product.full_product_name}`}
-                                >
-                                  {inquiry.inquire.product.full_product_name}
-                                </Link>
-                              </Col>
-
-                              <Col md={4}>
-                                {inquiry.inquire.qty} x ₱
-                                {inquiry.inquire.product.price} = ₱
-                                {inquiry.inquire.qty *
-                                  inquiry.inquire.product.price}
-                              </Col>
-                            </Row>
-                          </ListGroup.Item>
-                        </ListGroup>
+                                <Col md={4}>
+                                  {item.qty} x ₱{item.product.price} = ₱
+                                  {item.qty * item.product.price}
+                                </Col>
+                              </Row>
+                            </ListGroup.Item>
+                          </ListGroup>
+                        ))}
                       </ListGroup.Item>
                     )}
                   </ListGroup>
                 </Col>
+
+                {inquiry.inquire.map((item) => (
+                  <Col>
+                    <Card>
+                      <ListGroup variant='flush'>
+                        <ListGroup.Item>
+                          <h5>Inquiry Summary</h5>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Items</Col>
+                            <Col>₱{item.qty * item.product.price}</Col>
+                          </Row>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Total</Col>
+                            <Col>₱{item.qty * item.product.price}</Col>
+                          </Row>
+                        </ListGroup.Item>
+
+                        <ListGroup.Item>
+                          <Button type='button' className='btn btn-block'>
+                            Inquire Only
+                          </Button>
+                          <Button type='button' className='btn btn-block'>
+                            Place Order
+                          </Button>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Card>
+                  </Col>
+                ))}
               </Row>
             ))}
           </div>

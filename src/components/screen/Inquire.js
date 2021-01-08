@@ -15,7 +15,7 @@ import InquiryForm from '../InquiryForm';
 const { Content } = Layout;
 
 function Inquire() {
-  const { inquire } = useDataContext();
+  const { item } = useDataContext();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -35,6 +35,10 @@ function Inquire() {
 
     setLoading(true);
 
+    const inquire = [];
+    inquire.push(item);
+
+    console.log(inquire);
     try {
       await emailjs.sendForm(
         process.env.REACT_APP_SERVICE_ID,
@@ -56,6 +60,8 @@ function Inquire() {
         message: message.value,
         inquire,
         date,
+        isPaid: false,
+        isDelivered: false,
         createdAt,
       });
     } catch (error) {
@@ -83,17 +89,16 @@ function Inquire() {
 
               <br />
 
-              {inquire.product ? (
+              {item.product ? (
                 <p>
                   Product Name:{' '}
                   <strong>
                     <Link
                       to={`/product/${replaceToDash(
-                        inquire.product.full_product_name
+                        item.product.full_product_name
                       )}`}
                     >
-                      {inquire.product.model_name}{' '}
-                      {inquire.product.product_name}
+                      {item.product.model_name} {item.product.product_name}
                     </Link>
                   </strong>
                 </p>

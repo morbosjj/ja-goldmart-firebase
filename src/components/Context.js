@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
   const [addModal, setAddModal] = useState(false);
   const [editData, setEditData] = useState({});
   const [editModal, setEditModal] = useState(false);
-  const [inquire, setInquire] = useState({});
+  const [item, setItem] = useState({});
   const [docs, setDocs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -133,7 +133,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const addtoInquire = (product, qty) => {
-    setInquire({
+    setItem({
       product,
       qty,
     });
@@ -171,7 +171,7 @@ export const DataProvider = ({ children }) => {
     desc,
     images,
     loading,
-    inquire,
+    item,
     addtoInquire,
     getFirestoreCollection,
     getFirestoreQuery,

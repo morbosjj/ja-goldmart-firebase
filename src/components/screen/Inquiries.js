@@ -53,7 +53,7 @@ function Inquiries() {
       render: (text, record) => (
         <div className='inquiries-action'>
           <Link to={`/admin/inquiries/${record.inquiry_id}`}>
-            <Button>View</Button>
+            <Button>Details</Button>
           </Link>
 
           <Popconfirm

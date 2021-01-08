@@ -62,6 +62,7 @@ function Inquire() {
         date,
         isPaid: false,
         isDelivered: false,
+        isInquiryOnly: false,
         createdAt,
       });
     } catch (error) {

@@ -33,12 +33,20 @@
   text-transform: uppercase;
   font-weight: 600 !important;
 }
+.pdf-btn {
+  background-color: #db544a !important;
+  border-color: #e3513e !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
 .inquiry-btn:hover,
-.order-btn:hover {
+.order-btn:hover,
+.pdf-btn:hover {
   text-decoration: underline !important;
 }
 .inquiry-btn:disabled,
-.order-btn:disabled {
+.order-btn:disabled,
+.pdf-btn:disabled {
   text-decoration: none !important;
 }
 
@@ -99,4 +107,36 @@
 
 .btn:disabled {
   text-decoration: none !important;
+}
+
+/* Badge */
+
+.badge {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  min-width: 19px;
+}
+.badge-warning {
+  color: #212529;
+  background-color: #f7b924;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: #3ac47d;
+}
+
+.badge-danger {
+  color: #fff;
+  background-color: #d92550;
+}
+
+.badge-info {
+  color: #fff;
+  background-color: #16aaff;
+}
+
+.text-center {
+  text-align: center !important;
 }

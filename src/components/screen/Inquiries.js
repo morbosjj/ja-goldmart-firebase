@@ -11,7 +11,7 @@ function Inquiries() {
   const { docs, loading, getFirestoreCollection } = useDataContext();
 
   useEffect(() => {
-    getFirestoreCollection('inquiries');
+    getFirestoreCollection('inquiries', 'inquiryAt');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,6 +25,7 @@ function Inquiries() {
   }
 
   const columns = [
+    { title: 'Inquiry ID', dataIndex: 'inquiryID', key: 'inquiryID' },
     {
       title: 'First Name',
       dataIndex: 'firstname',
@@ -43,7 +44,7 @@ function Inquiries() {
       key: 'phone_number',
     },
 
-    { title: 'Date', dataIndex: 'date', key: 'date' },
+    { title: 'Date', dataIndex: 'inquiryAt', key: 'inquiryAt' },
 
     {
       title: 'Action',
@@ -52,7 +53,7 @@ function Inquiries() {
       fixed: 'right',
       render: (text, record) => (
         <div className='inquiries-action'>
-          <Link to={`/admin/inquiries/${record.inquiry_id}`}>
+          <Link to={`/admin/inquiries/${record.inquiryID}`}>
             <Button>Details</Button>
           </Link>
 

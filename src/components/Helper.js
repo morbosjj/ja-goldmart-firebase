@@ -49,3 +49,20 @@ export function downloadObjectAsJson(exportObj, exportName) {
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
 }
+
+export function addDecimals(num) {
+  return (Math.round(num * 100) / 100).toFixed(2);
+}
+
+export function randomFixedInteger(length) {
+  return Math.floor(
+    Math.pow(10, length - 1) +
+      Math.random() * (Math.pow(10, length) - Math.pow(10, length - 1) - 1)
+  );
+}
+
+export function addDashInOrderId(value) {
+  const output = value.replace(/\D[^\.]/g, '');
+
+  return (value = output.slice(0, 8) + '-' + output.slice(8, 12));
+}

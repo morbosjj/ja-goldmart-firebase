@@ -18,17 +18,17 @@ function Inquiry({ match }) {
     getFirestoreQuery,
     inquiryOnly,
   } = useDataContext();
-  const inquiryId = match.params.id;
+  const inquiryId = Number(match.params.id);
 
   // let image = images
   //   ? images.filter((x) => typeof x !== undefined).shift()
   //   : '';
 
   useEffect(() => {
-    getFirestoreQuery('inquiries', 'inquiry_id', inquiryId);
+    getFirestoreQuery('inquiries', 'inquiryID', inquiryId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(docs);
+  console.log(typeof inquiryId);
   return (
     <AdminContainer>
       <Content className='layout-content'>
@@ -42,7 +42,7 @@ function Inquiry({ match }) {
               <Row>
                 <h2 className='my-3'>Inquiry {inquiryId} </h2>
 
-                <Col md={7}>
+                <Col md={8}>
                   <ListGroup variant='flush'>
                     <ListGroup.Item>
                       {/* <h4 className='my-3'>Information</h4> */}
@@ -155,8 +155,8 @@ function Inquiry({ match }) {
                           </Row>
                         </ListGroup.Item>
 
-                        <ListGroup.Item>
-                          {!inquiry.isInquiryOnly && (
+                        {!inquiry.isInquiryOnly && (
+                          <ListGroup.Item>
                             <Row>
                               <Col>
                                 <Button
@@ -172,12 +172,12 @@ function Inquiry({ match }) {
                                   type='button'
                                   className='btn btn-block order-btn'
                                 >
-                                  Place Order
+                                  Create Order
                                 </Button>
                               </Col>
                             </Row>
-                          )}
-                        </ListGroup.Item>
+                          </ListGroup.Item>
+                        )}
                       </ListGroup>
                     </Card>
                   </Col>

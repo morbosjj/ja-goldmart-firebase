@@ -20,6 +20,7 @@ export const DataProvider = ({ children }) => {
   const [desc, setDesc] = useState('');
   const [images, setImages] = useState();
   const [error, setError] = useState();
+  const [inquiry, setInquiry] = useState([]);
 
   const setValueAddModal = (values) => {
     setAddData((prevData) => ({
@@ -90,10 +91,10 @@ export const DataProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const getFirestoreCollection = (collection) => {
+  const getFirestoreCollection = (collection, date) => {
     firestore
       .collection(collection)
-      .orderBy('createdAt', 'desc')
+      .orderBy(date, 'desc')
 
       .onSnapshot((snap) => {
         let documents = [];
@@ -132,6 +133,22 @@ export const DataProvider = ({ children }) => {
       });
   };
 
+  const getInquiryDetails = (value) => {
+    firestore
+      .collection('inquiries')
+      .where('inquiryID', '==', value)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setInquiry({ ...doc.data(), id: doc.id });
+        });
+
+        console.log(inquiry);
+        setLoading(false);
+        setError('');
+      });
+  };
+
   const inquiryOnly = (id) => {
     firestore
       .collection('inquiries')
@@ -160,6 +177,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const data = {
+    inquiry,
     addData,
     setAddData,
     addModal,
@@ -190,6 +208,7 @@ export const DataProvider = ({ children }) => {
     getDesc,
     getImages,
     inquiryOnly,
+    getInquiryDetails,
   };
 
   return (

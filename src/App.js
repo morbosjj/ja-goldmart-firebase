@@ -45,7 +45,7 @@ const App = () => {
         <PrivateRoute path='/admin/result' component={Result} />
         <PrivateRoute path='/admin/edit/:id' component={EditDescription} />
 
-        <Route path='/order-form' component={OrderForm} />
+        <Route path='/order-form/:inquiryID' component={OrderForm} />
         <Route path='/about' component={About} />
         <Route path='/product/:name' component={ProductPage} />
         <Route path='/category/:name' component={CategoryShop} />

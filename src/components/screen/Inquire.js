@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 import { Layout, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import emailjs from 'emailjs-com';
 import moment from 'moment';
-import { firestore, timestamp } from '../../firebase/config';
+import { firestore } from '../../firebase/config';
 import '../../css/components/Inquire.css';
 import { useDataContext } from '../Context';
-import { replaceToDash } from '../Helper';
+import { replaceToDash, randomFixedInteger } from '../Helper';
 import MainContainer from '../container/MainContainer';
 import InquiryForm from '../InquiryForm';
 
@@ -18,9 +17,18 @@ function Inquire() {
   const { item } = useDataContext();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const year = moment().format('YYYY');
+  const month = moment().format('MM');
+  const day = moment().format('DD');
 
   async function sendEmail(e) {
     e.preventDefault();
+    const inquireTypeNumber = 1000;
+    const randomNumber = randomFixedInteger(4);
+    const inquiryID = Number(
+      `${inquireTypeNumber}${year}${month}${day}${randomNumber}`
+    );
+
     const {
       firstname,
       lastname,
@@ -29,16 +37,13 @@ function Inquire() {
       company_name,
       message,
     } = e.target;
-    const date = moment().format('MMMM Do YYYY, h:mm:ss a');
-    const createdAt = timestamp();
-    const inquiry_id = uuidv4();
+    const inquiryAt = moment().format('MMMM Do YYYY, h:mm:ss a');
 
     setLoading(true);
 
     const inquire = [];
     inquire.push(item);
 
-    console.log(inquire);
     try {
       await emailjs.sendForm(
         process.env.REACT_APP_SERVICE_ID,
@@ -51,7 +56,7 @@ function Inquire() {
       setSuccess(true);
 
       await firestore.collection('inquiries').add({
-        inquiry_id,
+        inquiryID,
         firstname: firstname.value,
         lastname: lastname.value,
         phone_number: phone_number.value,
@@ -59,11 +64,10 @@ function Inquire() {
         company_name: company_name.value,
         message: message.value,
         inquire,
-        date,
         isPaid: false,
         isDelivered: false,
         isInquiryOnly: false,
-        createdAt,
+        inquiryAt,
       });
     } catch (error) {
       console.log(error);

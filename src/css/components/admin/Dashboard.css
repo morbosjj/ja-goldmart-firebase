@@ -126,32 +126,3 @@
 .dashboard-page .table-hover tbody tr:hover {
   background-color: #e0f3ff;
 }
-.text-center {
-  text-align: center !important;
-}
-
-.badge {
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  min-width: 19px;
-}
-.badge-warning {
-  color: #212529;
-  background-color: #f7b924;
-}
-
-.badge-success {
-  color: #fff;
-  background-color: #3ac47d;
-}
-
-.badge-danger {
-  color: #fff;
-  background-color: #d92550;
-}
-
-.badge-info {
-  color: #fff;
-  background-color: #16aaff;
-}

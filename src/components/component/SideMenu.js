@@ -39,6 +39,9 @@ const SideMenu = ({ collapsed }) => {
         <Menu.Item key='dashboard' icon={<DashboardFilled />}>
           <Link to='/admin/dashboard'>Dashboard</Link>
         </Menu.Item>
+        <Menu.Item key='orders' icon={<InboxOutlined />}>
+          <Link to='/admin/orders'>Orders</Link>
+        </Menu.Item>
         <Menu.Item key='inquiries' icon={<MailOutlined />}>
           <Link to='/admin/inquiries'>Inquiry</Link>
         </Menu.Item>

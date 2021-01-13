@@ -64,7 +64,7 @@
 }
 
 .modal-toggle {
-  padding: 20px;
+  padding: 10px;
 }
 
 .ant-result-icon {
@@ -135,6 +135,16 @@
 .badge-info {
   color: #fff;
   background-color: #16aaff;
+}
+
+.badge-delivered {
+  color: #fff;
+  background-color: #57cc99;
+}
+
+.badge-paid {
+  color: #fff;
+  background-color: #2bd9fe;
 }
 
 .text-center {

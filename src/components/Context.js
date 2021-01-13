@@ -40,12 +40,12 @@ export const DataProvider = ({ children }) => {
     auth
       .signInWithPopup(googleProvider)
       .then((result) => {
-        var credential = result.credential;
+        let credential = result.credential;
 
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = credential.accessToken;
+        let token = credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
+        let user = result.user;
       })
       .catch((err) => {
         console.log(err);

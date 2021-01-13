@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { Layout } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import '../../css/components/admin/Dashboard.css';
 

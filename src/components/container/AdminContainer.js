@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Layout } from 'antd';
 import SideMenu from '../component/SideMenu';
 import MenuToggle from '../component/MenuToggle';
+import '../../css/components/admin/AdminContainer.css';
 
 const AdminContainer = ({ children, title }) => {
   const [collapsed, setCollapsed] = useState(false);

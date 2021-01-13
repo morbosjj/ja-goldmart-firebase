@@ -15,6 +15,7 @@ import Dashboard from './components/screen/Dashboard';
 import Inquiry from './components/screen/Inquiry';
 import Inquiries from './components/screen/Inquiries';
 import Products from './components/screen/Products';
+import Orders from './components/screen/Orders';
 import Description from './components/screen/Description';
 import Categories from './components/screen/Categories';
 import Result from './components/screen/Result';
@@ -40,6 +41,7 @@ const App = () => {
         <PrivateRoute path='/admin/inquiries/:id' component={Inquiry} />
         <PrivateRoute path='/admin/inquiries' component={Inquiries} />
         <PrivateRoute path='/admin/products' component={Products} />
+        <PrivateRoute path='/admin/orders' component={Orders} />
         <PrivateRoute path='/admin/description' component={Description} />
         <PrivateRoute path='/admin/categories' component={Categories} />
         <PrivateRoute path='/admin/result' component={Result} />

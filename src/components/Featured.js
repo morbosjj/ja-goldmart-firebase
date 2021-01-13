@@ -10,7 +10,7 @@ const Featured = () => {
   const featured = docs.filter((value) => value.feature === 'true');
 
   useEffect(() => {
-    getFirestoreCollection('products');
+    getFirestoreCollection('products', 'createdAt');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

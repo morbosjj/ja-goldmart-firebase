@@ -17,7 +17,7 @@ const Shop = () => {
   // const match = useRouteMatch('/shop/:name');
 
   useEffect(() => {
-    getFirestoreCollection('products');
+    getFirestoreCollection('products', 'createdAt');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

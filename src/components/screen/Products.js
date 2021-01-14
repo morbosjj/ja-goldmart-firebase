@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Table, Skeleton, Button, message, Popconfirm } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import AddProduct from '../modals/AddProduct';
 import ModalToggle from '../component/ModalToggle';
 import EditProduct from '../modals/EditProduct';
-import useFirestore from '../../hooks/useFirestore';
+import { useDataContext } from '../Context';
 import { firestore } from '../../firebase/config';
 import ReactHtmlParser from 'react-html-parser';
 import { handleData, convertToString, convertStringToBoolean } from '../Helper';
@@ -15,7 +15,12 @@ import '../../css/components/admin/ProductList.css';
 const { Content } = Layout;
 
 const Products = () => {
-  const { docs, loading } = useFirestore('products');
+  const { products, loading, getProducts } = useDataContext();
+
+  useEffect(() => {
+    getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const deleteProduct = (id) => {
     if (id) {
@@ -130,7 +135,7 @@ const Products = () => {
           <Table
             rowKey={(record) => record.id}
             columns={columns}
-            dataSource={docs}
+            dataSource={products}
             scroll={{ x: 1300 }}
             expandable={{
               expandedRowRender: (record) => (

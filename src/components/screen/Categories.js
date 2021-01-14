@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Table, Skeleton, Button, Popconfirm, message } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import AddCategory from '../modals/AddCategory';
-import useFirestore from '../../hooks/useFirestore';
 import { firestore } from '../../firebase/config';
 import EditCategory from '../modals/EditCategory';
 import ModalToggle from '../component/ModalToggle';
+import { useDataContext } from '../Context';
 import '../../css/components/admin/Categories.css';
 import { handleData } from '../Helper';
 
 const { Content } = Layout;
 
 const Categories = () => {
-  const { docs, loading } = useFirestore('categories');
+  const { categories, loading, getCategories } = useDataContext();
+
+  useEffect(() => {
+    getCategories();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const deleteCategory = (id) => {
     if (id) {
@@ -75,7 +81,7 @@ const Categories = () => {
           <Table
             rowKey={(record) => record.id}
             columns={columns}
-            dataSource={docs}
+            dataSource={categories}
           />
         )}
       </Content>

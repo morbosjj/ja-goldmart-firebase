@@ -7,10 +7,10 @@ import '../../css/components/admin/Orders.css';
 const { Content } = Layout;
 
 const Orders = () => {
-  const { docs, loading, getFirestoreCollection } = useDataContext();
+  const { orders, loading, getOrders } = useDataContext();
 
   useEffect(() => {
-    getFirestoreCollection('orders', 'orderAt');
+    getOrders();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,7 +76,7 @@ const Orders = () => {
           <Table
             rowKey={(record) => record.orderID}
             columns={columns}
-            dataSource={docs}
+            dataSource={orders}
           />
         )}
       </Content>

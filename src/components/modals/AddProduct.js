@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, Select, Button, InputNumber, Input } from 'antd';
+import { Modal, Form, Select, Button, InputNumber } from 'antd';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useDataContext } from '../Context';
-import useFirestore from '../../hooks/useFirestore';
 import { ErrorMessage } from '@hookform/error-message';
 import InputField from '../component/InputField';
 import '../../css/components/admin/Modal.css';
 
 const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
-  const { addData, setValueAddModal } = useDataContext();
-  const { docs } = useFirestore('categories');
+  const {
+    categories,
+    addData,
+    setValueAddModal,
+    getCategories,
+  } = useDataContext();
   const { register, control, handleSubmit, errors } = useForm({
     mode: 'onBlur',
     defaultValues: {
@@ -23,16 +26,21 @@ const AddProductModal = ({ title, visible, setVisible, onCancel }) => {
       feature: addData.feature,
     },
   });
-  const options = docs.map(({ name }) => ({ value: name, label: name }));
+
+  const options = categories.map(({ name }) => ({ value: name, label: name }));
   const { push } = useHistory();
+
+  useEffect(() => {
+    getCategories();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     Object.keys(addData).length === 0 ? setVisible(false) : setVisible(true);
   }, [addData, setVisible]);
 
   const onSubmit = (data) => {
-    // console.log(data);
-    // return;
     if (!data) {
       return;
     }

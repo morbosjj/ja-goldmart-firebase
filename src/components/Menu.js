@@ -3,10 +3,10 @@ import '../css/components/Menu.css';
 import { useDataContext } from './Context';
 
 function Menu({ loading }) {
-  const { categories, getFirestoreCollection } = useDataContext();
+  const { categories, getCategories } = useDataContext();
 
   useEffect(() => {
-    getFirestoreCollection('categories');
+    getCategories();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

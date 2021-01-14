@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Form, Select, Button, InputNumber } from 'antd';
 import InputField from '../component/InputField';
 import { ErrorMessage } from '@hookform/error-message';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import useFirestore from '../../hooks/useFirestore';
 import { useDataContext } from '../Context';
 
 function EditProduct({ title, visible, setVisible, onCancel, data }) {
-  const { setValueEditModal, getDesc, getImages } = useDataContext();
+  const {
+    categories,
+    setValueEditModal,
+    getDesc,
+    getImages,
+    getCategories,
+  } = useDataContext();
   const {
     id,
     model_name,
@@ -27,9 +32,14 @@ function EditProduct({ title, visible, setVisible, onCancel, data }) {
     },
   });
 
-  const { docs } = useFirestore('categories');
-  const options = docs.map(({ name }) => ({ value: name, label: name }));
+  const options = categories.map(({ name }) => ({ value: name, label: name }));
   const { push } = useHistory();
+
+  useEffect(() => {
+    getCategories();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSubmit = (value) => {
     if (!data) {

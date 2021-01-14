@@ -8,10 +8,10 @@ import { useDataContext } from '../Context';
 const { Content } = Layout;
 
 function Inquiries() {
-  const { docs, loading, getFirestoreCollection } = useDataContext();
+  const { inquiries, loading, getInquiries } = useDataContext();
 
   useEffect(() => {
-    getFirestoreCollection('inquiries', 'inquiryAt');
+    getInquiries();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,7 +82,7 @@ function Inquiries() {
           <Table
             rowKey={(record) => record.id}
             columns={columns}
-            dataSource={docs}
+            dataSource={inquiries}
             scroll={{ x: 1300 }}
           />
         )}

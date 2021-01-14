@@ -9,18 +9,31 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
+  const [products, setProducts] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [orders, setOrders] = useState([]);
+
   const [addData, setAddData] = useState({});
   const [addModal, setAddModal] = useState(false);
   const [editData, setEditData] = useState({});
   const [editModal, setEditModal] = useState(false);
   const [item, setItem] = useState({});
   const [docs, setDocs] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [desc, setDesc] = useState('');
   const [images, setImages] = useState();
   const [error, setError] = useState();
   const [inquiry, setInquiry] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const setValueAddModal = (values) => {
     setAddData((prevData) => ({
@@ -52,44 +65,9 @@ export const DataProvider = ({ children }) => {
       });
   };
 
-  const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
-  };
-
-  const login = (email, password) => {
-    return auth.signInWithEmailAndPassword(email, password);
-  };
-
   const logout = () => {
     return auth.signOut();
   };
-
-  const resetPassword = (email) => {
-    return auth.sendPasswordResetEmail(email);
-  };
-
-  const updateEmail = (email) => {
-    return currentUser.updateEmail(email);
-  };
-
-  const updatePassword = (password) => {
-    return currentUser.updatePassword(password);
-  };
-
-  const updateUserProfile = (fullname) => {
-    return currentUser.updateProfile({
-      displayName: fullname,
-    });
-  };
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-
-    return unsubscribe;
-  }, []);
 
   const getFirestoreCollection = (collection, date) => {
     firestore
@@ -109,6 +87,63 @@ export const DataProvider = ({ children }) => {
           setLoading(false);
           setDocs(documents);
         }
+      });
+  };
+
+  const getProducts = () => {
+    firestore
+      .collection('products')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snap) => {
+        let result = [];
+        snap.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+        setLoading(false);
+        setProducts(result);
+      });
+  };
+
+  const getInquiries = () => {
+    firestore
+      .collection('inquiries')
+      .orderBy('inquiryAt', 'desc')
+      .onSnapshot((snap) => {
+        let result = [];
+        snap.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+        setLoading(false);
+        setInquiries(result);
+      });
+  };
+
+  const getCategories = () => {
+    firestore
+      .collection('categories')
+      .orderBy('createdAt', 'desc')
+      .onSnapshot((snap) => {
+        let result = [];
+        snap.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+        setLoading(false);
+        setCategories(result);
+      });
+  };
+
+  const getOrders = () => {
+    firestore
+      .collection('orders')
+      .orderBy('orderAt', 'desc')
+      .onSnapshot((snap) => {
+        let result = [];
+        snap.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+
+        setLoading(false);
+        setOrders(result);
       });
   };
 
@@ -177,6 +212,14 @@ export const DataProvider = ({ children }) => {
   };
 
   const data = {
+    products,
+    inquiries,
+    categories,
+    orders,
+    getProducts,
+    getInquiries,
+    getCategories,
+    getOrders,
     inquiry,
     addData,
     setAddData,
@@ -188,16 +231,9 @@ export const DataProvider = ({ children }) => {
     setValueEditModal,
     currentUser,
     loginGoogle,
-    signup,
-    login,
     logout,
-    resetPassword,
-    updateEmail,
-    updatePassword,
-    updateUserProfile,
     docs,
     error,
-    categories,
     desc,
     images,
     loading,

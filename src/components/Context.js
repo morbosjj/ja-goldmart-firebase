@@ -13,6 +13,7 @@ export const DataProvider = ({ children }) => {
   const [inquiries, setInquiries] = useState([]);
   const [categories, setCategories] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState([]);
 
   const [addData, setAddData] = useState({});
   const [addModal, setAddModal] = useState(false);
@@ -178,7 +179,21 @@ export const DataProvider = ({ children }) => {
           setInquiry({ ...doc.data(), id: doc.id });
         });
 
-        console.log(inquiry);
+        setLoading(false);
+        setError('');
+      });
+  };
+
+  const getOrderDetails = (value) => {
+    firestore
+      .collection('orders')
+      .where('orderID', '==', value)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setOrder({ ...doc.data(), id: doc.id });
+        });
+
         setLoading(false);
         setError('');
       });
@@ -216,10 +231,12 @@ export const DataProvider = ({ children }) => {
     inquiries,
     categories,
     orders,
+    order,
     getProducts,
     getInquiries,
     getCategories,
     getOrders,
+    getOrderDetails,
     inquiry,
     addData,
     setAddData,

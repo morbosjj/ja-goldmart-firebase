@@ -25,23 +25,19 @@ function Inquiries() {
   }
 
   const columns = [
-    { title: 'Inquiry ID', dataIndex: 'inquiryID', key: 'inquiryID' },
     {
-      title: 'First Name',
-      dataIndex: 'firstname',
-      key: 'firstname',
+      title: 'Inquiry ID',
+      dataIndex: 'inquiryID',
+      key: 'inquiryID',
+      fixed: 'left',
     },
     {
-      title: 'Last Name',
-      dataIndex: 'lastname',
-      key: 'lastname',
-    },
-
-    { title: 'Email', dataIndex: 'email', key: 'email' },
-    {
-      title: 'Contact Number',
-      dataIndex: 'phone_number',
-      key: 'phone_number',
+      title: 'Customer',
+      render: (record) => (
+        <div>
+          {record.firstname} {record.lastname}
+        </div>
+      ),
     },
 
     { title: 'Date', dataIndex: 'inquiryAt', key: 'inquiryAt' },

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout, Table, Skeleton, Button } from 'antd';
+import { Link } from 'react-router-dom';
 import AdminContainer from '../container/AdminContainer';
 import { useDataContext } from '../Context';
 import '../../css/components/admin/Orders.css';
@@ -20,6 +21,7 @@ const Orders = () => {
       title: 'Order ID',
       dataIndex: 'orderID',
       key: 'orderID',
+      fixed: 'left',
     },
     {
       title: 'Customer',
@@ -59,9 +61,11 @@ const Orders = () => {
 
     {
       title: '',
-      render: () => (
+      render: (record) => (
         <div>
-          <Button>Details</Button>
+          <Link to={`/admin/orders/${record.orderID}`}>
+            <Button>Details</Button>
+          </Link>
         </div>
       ),
     },

@@ -1,19 +1,33 @@
-import React, { useEffect } from 'react';
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
+import React, { useEffect, useState, useRef } from 'react';
+import {
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Card,
+  Button,
+  Form,
+} from 'react-bootstrap';
 import { Layout } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import { useDataContext } from '../Context';
 import Loader from '../Loader';
 import Message from '../Message';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { replaceToDash } from '../Helper';
+import '../../css/components/admin/Inquiries.css';
 
 const { Content } = Layout;
 
 function Inquiry({ match }) {
   const { inquiry, error, getInquiryDetails, inquiryOnly } = useDataContext();
   const inquiryId = Number(match.params.id);
+  const history = useHistory();
   const { inquire } = inquiry ? inquiry : [];
+  const [copy, setCopy] = useState(false);
+  const [text, setText] = useState('');
+  const textCopyRef = useRef(null);
+  const urlLink = `${window.location.origin}/order-form/${inquiryId}`;
 
   // let image = images
   //   ? images.filter((x) => typeof x !== undefined).shift()
@@ -24,7 +38,23 @@ function Inquiry({ match }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(inquire);
+  const inquiryOnlyHandler = () => {
+    history.push('/admin/inquiries');
+    inquiryOnly(inquiry.id);
+  };
+
+  const createOrderHandler = () => {
+    setCopy((prevState) => !prevState);
+  };
+
+  const copyToClipboard = (e) => {
+    textCopyRef.current.select();
+    document.execCommand('copy');
+
+    e.target.focus();
+    setText('URL copied');
+  };
+
   return (
     <AdminContainer>
       <Content className='layout-content'>
@@ -79,9 +109,6 @@ function Inquiry({ match }) {
               </a> */}
                   </ListGroup.Item>
 
-                  {/* {inquire.length === 0 ? (
-                    <Message variant='danger'>No items</Message>
-                  ) : ( */}
                   <ListGroup.Item>
                     <h4>Inquire Items</h4>
 
@@ -124,10 +151,10 @@ function Inquiry({ match }) {
                 </ListGroup>
               </Col>
 
-              {inquiry.inquire.map((item) => (
+              {inquiry.inquire.map((item, index) => (
                 <Col>
                   <Card>
-                    <ListGroup variant='flush'>
+                    <ListGroup variant='flush' key={index}>
                       <ListGroup.Item>
                         <h5>Inquiry Summary</h5>
                       </ListGroup.Item>
@@ -153,7 +180,7 @@ function Inquiry({ match }) {
                               <Button
                                 type='button'
                                 className='btn btn-block inquiry-btn'
-                                onClick={() => inquiryOnly(inquiry.id)}
+                                onClick={inquiryOnlyHandler}
                               >
                                 Inquire Only
                               </Button>
@@ -162,10 +189,32 @@ function Inquiry({ match }) {
                               <Button
                                 type='button'
                                 className='btn btn-block order-btn'
+                                onClick={createOrderHandler}
                               >
                                 Create Order
                               </Button>
                             </Col>
+                          </Row>
+
+                          <Row className='mt-3'>
+                            {copy && (
+                              <Col>
+                                <div className='inquiry-url-copy'>
+                                  <Form.Control
+                                    type='text'
+                                    defaultValue={urlLink}
+                                    ref={textCopyRef}
+                                  />
+                                  <Button
+                                    className='btn copy-btn'
+                                    onClick={copyToClipboard}
+                                  >
+                                    <i className='fas fa-link'></i> Copy link
+                                  </Button>
+                                  <Form.Text muted>{text}</Form.Text>
+                                </div>
+                              </Col>
+                            )}
                           </Row>
                         </ListGroup.Item>
                       )}

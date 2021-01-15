@@ -39,6 +39,13 @@
   text-transform: uppercase;
   font-weight: 600 !important;
 }
+
+.copy-btn {
+}
+
+.inquiry-url-copy {
+}
+
 .inquiry-btn:hover,
 .order-btn:hover,
 .pdf-btn:hover {

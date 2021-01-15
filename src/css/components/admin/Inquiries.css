@@ -2,3 +2,11 @@
   display: flex;
   align-items: center;
 }
+
+.inquiry-url-copy .btn {
+  font-size: 0.8rem;
+}
+
+.inquiry-url-copy input {
+  margin-bottom: 10px;
+}

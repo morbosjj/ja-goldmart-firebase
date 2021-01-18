@@ -10,8 +10,7 @@ const About = () => {
       </div>
 
       <div className='about'>
-        {/* className='about-title' */}
-        <h1> About </h1>
+        <h1> JA Goldmart Enterprise </h1>
 
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur

@@ -4,3 +4,9 @@
 .featured-slider .product-card:hover {
   box-shadow: none;
 }
+
+@media (max-width: 1200px) {
+  .slick-arrow {
+    display: none !important;
+  }
+}

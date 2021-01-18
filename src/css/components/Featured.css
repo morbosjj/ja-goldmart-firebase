@@ -1,7 +1,6 @@
-.feature {
-  text-align: center;
-  min-height: 100vh;
+.featured-slider .card {
+  border: none;
 }
-.feature .loader-container {
-  margin: 150px auto;
+.featured-slider .product-card:hover {
+  box-shadow: none;
 }

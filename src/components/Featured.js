@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
-import Product from './Product';
+import FeatureSlider from './FeatureSlider';
 import '../css/components/Featured.css';
 import Loader from './Loader';
 import { useDataContext } from './Context';
@@ -16,20 +16,27 @@ const Featured = () => {
   }, []);
 
   return (
-    <Container fluid='xl' className='py-5 feature'>
-      <h2 className='my-3 text-center'>Products</h2>
+    <section id='featured' className='bg-light text-dark py-5'>
       {loading ? (
         <Loader />
       ) : (
-        <Row>
-          {featured.map((product) => (
-            <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
-              <Product item={product} />
+        <Container className='my-5'>
+          <div data-aos='fade-up' data-aos-once='true'>
+            <h2 className='section-title text-center'>Featured Products</h2>
+            <p className=' text-center mb-4'>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quo
+              commodi excepturi!
+            </p>
+          </div>
+
+          <Row>
+            <Col data-aos='fade-up' data-aos-once='true'>
+              <FeatureSlider products={featured} />
             </Col>
-          ))}
-        </Row>
+          </Row>
+        </Container>
       )}
-    </Container>
+    </section>
   );
 };
 

@@ -10,7 +10,7 @@ export default function Product({ item }) {
   const [qty, setQty] = useState(1);
 
   return (
-    <Card className='my-3 p-1 rounded product-card'>
+    <Card className='rounded product-card'>
       <a href={`/product/${replaceToDash(item.full_product_name)}`}>
         {item.images ? (
           <Card.Img

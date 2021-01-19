@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import { Layout } from 'antd';
 import Navigation from '../Navigation/Navigation';
-import CarouselSlider from '../CarouselSlider';
+import Carousel from '../Carousel';
 import Featured from '../Featured';
 import About from '../About';
 import FooterSite from '../FooterSite';
@@ -16,9 +16,9 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout className='main'>
       <Navigation />
-      <CarouselSlider />
+      <Carousel />
       <Featured />
       <About />
       <FooterSite />

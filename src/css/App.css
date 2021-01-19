@@ -4,10 +4,16 @@
 * {
   box-sizing: border-box;
 }
-
+body {
+  overflow-x: hidden;
+}
 .content-main {
   margin: 100px auto;
   padding: 20px;
+}
+
+.main .ant-layout-header {
+  margin-bottom: 95px;
 }
 
 .btn-custom {

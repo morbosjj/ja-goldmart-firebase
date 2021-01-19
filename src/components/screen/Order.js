@@ -9,7 +9,8 @@ import {
   Image,
 } from 'react-bootstrap';
 import { Layout } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import moment from 'moment';
 import AdminContainer from '../container/AdminContainer';
 import Loader from '../Loader';
 import { useDataContext } from '../Context';
@@ -19,15 +20,32 @@ import '../../css/components/admin/Order.css';
 const { Content } = Layout;
 
 const Order = ({ match }) => {
-  const { order, getOrderDetails } = useDataContext();
+  const {
+    order,
+    getOrderDetails,
+    updateOrderToDelivered,
+    updateOrderToPaid,
+  } = useDataContext();
   const orderId = Number(match.params.id);
-
+  const history = useHistory();
+  const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+  const method = 'Credit/Debit Card';
   const { orderItems } = order ? order : [];
 
   useEffect(() => {
     getOrderDetails(orderId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const deliverHandler = () => {
+    updateOrderToDelivered(order.id, date);
+    history.push('/admin/orders');
+  };
+
+  const paidHandler = () => {
+    updateOrderToPaid(order.id, date, method);
+    history.push('/admin/orders');
+  };
 
   console.log(order);
   return (
@@ -64,7 +82,9 @@ const Order = ({ match }) => {
                     )}
 
                     {order.isDelivered ? (
-                      <Alert variant='success'>Delivered on</Alert>
+                      <Alert variant='success'>
+                        Delivered on {order.deliveredAt}
+                      </Alert>
                     ) : (
                       <Alert variant='danger'>Not Delivered</Alert>
                     )}
@@ -72,9 +92,12 @@ const Order = ({ match }) => {
 
                   <ListGroup.Item>
                     <h2>Payment</h2>
-
+                    <p>
+                      <strong>Method: </strong>
+                      {order.paymentMethod}
+                    </p>
                     {order.isPaid ? (
-                      <Alert variant='success'>Paid on</Alert>
+                      <Alert variant='success'>Paid on {order.paidAt}</Alert>
                     ) : (
                       <Alert variant='danger'>Not Paid</Alert>
                     )}
@@ -157,23 +180,29 @@ const Order = ({ match }) => {
 
                     <ListGroup.Item>
                       <Row>
-                        <Col>
-                          <Button
-                            type='button'
-                            className='btn btn-block inquiry-btn'
-                            // onClick={() => inquiryOnly(inquiry.id)}
-                          >
-                            Mark as Paid
-                          </Button>
-                        </Col>
-                        <Col>
-                          <Button
-                            type='button'
-                            className='btn btn-block order-btn'
-                          >
-                            Mark as Delivered
-                          </Button>
-                        </Col>
+                        {!order.isPaid && (
+                          <Col>
+                            <Button
+                              type='button'
+                              className='btn btn-block inquiry-btn'
+                              onClick={paidHandler}
+                            >
+                              Mark as Paid
+                            </Button>
+                          </Col>
+                        )}
+
+                        {!order.isDelivered && (
+                          <Col>
+                            <Button
+                              type='button'
+                              className='btn btn-block order-btn'
+                              onClick={deliverHandler}
+                            >
+                              Mark as Delivered
+                            </Button>
+                          </Col>
+                        )}
                       </Row>
                     </ListGroup.Item>
                   </ListGroup>

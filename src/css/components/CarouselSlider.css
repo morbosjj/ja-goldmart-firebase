@@ -44,9 +44,11 @@
 }
 
 @media (min-width: 768px) {
-  .main-carousel {
+  .main-carousel,
+  .main-carousel .overlay-image {
     height: 70vh;
   }
+
   .main-carousel .carousel-content {
     flex-direction: row;
   }
@@ -60,7 +62,8 @@
 }
 
 @media (min-width: 900px) {
-  .main-carousel {
+  .main-carousel,
+  .main-carousel .overlay-image {
     height: 80vh;
   }
 

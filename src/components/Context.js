@@ -199,7 +199,7 @@ export const DataProvider = ({ children }) => {
       });
   };
 
-  const inquiryOnly = (id) => {
+  const updateInquiryToInquiryOnly = (id) => {
     firestore
       .collection('inquiries')
       .doc(id)
@@ -209,6 +209,21 @@ export const DataProvider = ({ children }) => {
       .then(() => {
         console.log('Document successfully update');
       });
+  };
+
+  const updateOrderToDelivered = (id, date) => {
+    firestore.collection('orders').doc(id).update({
+      isDelivered: true,
+      deliveredAt: date,
+    });
+  };
+
+  const updateOrderToPaid = (id, date, method) => {
+    firestore.collection('orders').doc(id).update({
+      isPaid: true,
+      paidAt: date,
+      paymentMethod: method,
+    });
   };
 
   const addtoInquire = (product, qty) => {
@@ -260,7 +275,9 @@ export const DataProvider = ({ children }) => {
     getFirestoreQuery,
     getDesc,
     getImages,
-    inquiryOnly,
+    updateInquiryToInquiryOnly,
+    updateOrderToDelivered,
+    updateOrderToPaid,
     getInquiryDetails,
   };
 

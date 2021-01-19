@@ -20,7 +20,12 @@ import '../../css/components/admin/Inquiries.css';
 const { Content } = Layout;
 
 function Inquiry({ match }) {
-  const { inquiry, error, getInquiryDetails, inquiryOnly } = useDataContext();
+  const {
+    inquiry,
+    error,
+    getInquiryDetails,
+    updateInquiryToInquiryOnly,
+  } = useDataContext();
   const inquiryId = Number(match.params.id);
   const history = useHistory();
   const { inquire } = inquiry ? inquiry : [];
@@ -40,7 +45,7 @@ function Inquiry({ match }) {
 
   const inquiryOnlyHandler = () => {
     history.push('/admin/inquiries');
-    inquiryOnly(inquiry.id);
+    updateInquiryToInquiryOnly(inquiry.id);
   };
 
   const createOrderHandler = () => {

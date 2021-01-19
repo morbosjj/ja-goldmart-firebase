@@ -14,7 +14,7 @@ const Dashboard = () => {
 
         <Row className='mb-3'>
           <Col>
-            <div class='dashboard-card dashboard-content bg-radiant-yellow'>
+            <div className='dashboard-card dashboard-content bg-radiant-yellow'>
               <div className='dashboard-content-wrapper'>
                 <div className='dashboard-content-left'>
                   <div className='dashboard-card-heading'>Total Orders</div>
@@ -29,7 +29,7 @@ const Dashboard = () => {
             </div>
           </Col>
           <Col>
-            <div class='dashboard-card dashboard-content bg-radiant-yellow'>
+            <div className='dashboard-card dashboard-content bg-radiant-yellow'>
               <div className='dashboard-content-wrapper'>
                 <div className='dashboard-content-left'>
                   <div className='dashboard-card-heading'>Total Products</div>
@@ -45,7 +45,7 @@ const Dashboard = () => {
           </Col>
 
           <Col>
-            <div class='dashboard-card dashboard-content bg-radiant-yellow'>
+            <div className='dashboard-card dashboard-content bg-radiant-yellow'>
               <div className='dashboard-content-wrapper'>
                 <div className='dashboard-content-left'>
                   <div className='dashboard-card-heading'>Stock</div>
@@ -68,8 +68,8 @@ const Dashboard = () => {
                 Orders
                 <div className='panel'>
                   <div className='btn-group-sm btn-group'>
-                    <button class='active btn btn-focus'>Last Week</button>
-                    <button class='btn btn-focus'>All Month</button>
+                    <button className='active btn btn-focus'>Last Week</button>
+                    <button className='btn btn-focus'>All Month</button>
                   </div>
                 </div>
               </div>

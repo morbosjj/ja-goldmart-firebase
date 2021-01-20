@@ -4,7 +4,6 @@ import { Layout, Menu } from 'antd';
 import { Image } from 'react-bootstrap';
 import {
   DashboardFilled,
-  UserOutlined,
   MailOutlined,
   InboxOutlined,
 } from '@ant-design/icons';
@@ -51,9 +50,9 @@ const SideMenu = ({ collapsed }) => {
         <Menu.Item key='categories' icon={<InboxOutlined />}>
           <Link to='/admin/categories'>Categories</Link>
         </Menu.Item>
-        <Menu.Item key='accounts' icon={<UserOutlined />}>
+        {/* <Menu.Item key='accounts' icon={<UserOutlined />}>
           <Link to='/admin/accounts'>Accounts</Link>
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     </Sider>
   );

@@ -30,7 +30,7 @@ const Featured = () => {
           </div>
 
           <Row>
-            <Col data-aos='fade-up' data-aos-delay='800'>
+            <Col data-aos='fade-up' data-aos-once='true' data-aos-delay='800'>
               <FeatureSlider products={featured} />
             </Col>
           </Row>

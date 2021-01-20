@@ -5,11 +5,21 @@ import '../css/components/About.css';
 const About = () => {
   return (
     <div className='about-us' data-aos='fade-up' data-aos-once='true'>
-      <div className='about-img' data-aos='fade-up' data-aos-delay='1000'>
+      <div
+        className='about-img'
+        data-aos='fade-up'
+        data-aos-once='true'
+        data-aos-delay='1000'
+      >
         <img src='img/about.jpg' alt='company' />
       </div>
 
-      <div className='about' data-aos='fade-up' data-aos-delay='1500'>
+      <div
+        className='about'
+        data-aos='fade-up'
+        data-aos-once='true'
+        data-aos-delay='1500'
+      >
         <h1> JA Goldmart Enterprise </h1>
 
         <p>

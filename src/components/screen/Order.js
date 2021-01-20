@@ -47,7 +47,6 @@ const Order = ({ match }) => {
     history.push('/admin/orders');
   };
 
-  console.log(order);
   return (
     <AdminContainer>
       <Content className='layout-content'>

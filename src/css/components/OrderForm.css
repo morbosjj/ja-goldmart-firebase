@@ -11,6 +11,23 @@
   min-height: 100vh;
 }
 
+.order-message-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-message-container .about-header {
+  align-self: center;
+}
+.order-message-container .order-message {
+  margin-top: 50px;
+  text-align: center;
+}
+.order-message-container .order-message h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
 .order-form-container .loader-container {
   position: absolute;
   top: 50%;
@@ -154,4 +171,8 @@
 .order-action button {
   font-size: 14px !important;
   margin-left: 20px;
+}
+
+.order-form-container .ant-layout {
+  background-color: #fff !important;
 }

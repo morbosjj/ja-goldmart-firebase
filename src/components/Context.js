@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [orders, setOrders] = useState([]);
   const [order, setOrder] = useState([]);
-
+  const [orderError, setOrderError] = useState(false);
   const [addData, setAddData] = useState({});
   const [addModal, setAddModal] = useState(false);
   const [editData, setEditData] = useState({});
@@ -145,6 +145,29 @@ export const DataProvider = ({ children }) => {
 
         setLoading(false);
         setOrders(result);
+      });
+  };
+
+  const getOrderIfExist = (inquiryId) => {
+    firestore
+      .collection('orders')
+      .where('inquiryID', '==', inquiryId)
+      .get()
+      .then((querySnapshot) => {
+        let result = [];
+
+        querySnapshot.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+
+        if (result.length === 0) {
+          return setOrderError(true);
+        }
+
+        result.map((data) => {
+          return setOrder(data);
+        });
+        // setOrder(result);
       });
   };
 
@@ -279,6 +302,8 @@ export const DataProvider = ({ children }) => {
     updateOrderToDelivered,
     updateOrderToPaid,
     getInquiryDetails,
+    getOrderIfExist,
+    orderError,
   };
 
   return (

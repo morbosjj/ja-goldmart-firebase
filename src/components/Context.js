@@ -15,10 +15,13 @@ export const DataProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [order, setOrder] = useState([]);
   const [orderError, setOrderError] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [orderNumber, setOrderNumber] = useState('');
   const [addData, setAddData] = useState({});
   const [addModal, setAddModal] = useState(false);
   const [editData, setEditData] = useState({});
   const [editModal, setEditModal] = useState(false);
+  const [orderData, setOrderData] = useState({});
   const [item, setItem] = useState({});
   const [docs, setDocs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,6 +48,13 @@ export const DataProvider = ({ children }) => {
 
   const setValueEditModal = (values) => {
     setEditData((prevData) => ({
+      ...prevData,
+      ...values,
+    }));
+  };
+
+  const setValueOrderForm = (values) => {
+    setOrderData((prevData) => ({
       ...prevData,
       ...values,
     }));
@@ -281,9 +291,12 @@ export const DataProvider = ({ children }) => {
     addModal,
     editData,
     setEditData,
+    orderData,
+    setOrderData,
     editModal,
     setValueAddModal,
     setValueEditModal,
+    setValueOrderForm,
     currentUser,
     loginGoogle,
     logout,
@@ -304,6 +317,10 @@ export const DataProvider = ({ children }) => {
     getInquiryDetails,
     getOrderIfExist,
     orderError,
+    orderSuccess,
+    setOrderSuccess,
+    orderNumber,
+    setOrderNumber,
   };
 
   return (

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Logo from '../../img/logo.png';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { useDataContext } from '../Context';
+import { useForm } from 'react-hook-form';
 import PageNotFound from './PageNotFound';
 import Loader from '../Loader';
 import { addDecimals, randomFixedInteger } from '../Helper';
@@ -14,20 +15,32 @@ const OrderForm = () => {
   const {
     order,
     orderError,
+    orderSuccess,
+    orderNumber,
     inquiry,
     getInquiryDetails,
     getOrderIfExist,
   } = useDataContext();
-  const [orderSuccess, setOrderSuccess] = useState(false);
-  const [orderNumber, setOrderNumber] = useState('');
+
   const params = useParams();
+  const history = useHistory();
   const id = Number(params.inquiryID);
   const date = moment().format('L');
   const orderAt = moment().format('MMMM Do YYYY, h:mm:ss a');
   const year = moment().format('YYYY');
   const month = moment().format('MM');
   const day = moment().format('DD');
+  const orderTypeNumber = 2000;
+  const randomNumber = randomFixedInteger(4);
+  const orderID = Number(
+    `${orderTypeNumber}${year}${month}${day}${randomNumber}`
+  );
+
   const { inquire } = inquiry ? inquiry : [];
+
+  const { register, handleSubmit, errors } = useForm({
+    mode: 'onBlur',
+  });
 
   useEffect(() => {
     getInquiryDetails(id);
@@ -50,56 +63,42 @@ const OrderForm = () => {
     Number(taxPrice)
   ).toFixed(2);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const orderTypeNumber = 2000;
-    const randomNumber = randomFixedInteger(4);
-    const orderID = Number(
-      `${orderTypeNumber}${year}${month}${day}${randomNumber}`
-    );
-
+  const onSubmit = (data) => {
     const {
       firstname,
       lastname,
-      phone_number,
       email,
+      phone_number,
       address_line,
       address_line_2,
       city,
       state,
       zip,
-    } = e.target;
+    } = data;
 
-    try {
-      await firestore.collection('orders').add({
-        orderID,
+    localStorage.setItem(
+      'order',
+      JSON.stringify({
         inquiryID: id,
-        firstname: firstname.value,
-        lastname: lastname.value,
-        phone_number: phone_number.value,
-        email: email.value,
-        orderItems: inquire,
+        orderID,
+        firstname,
+        lastname,
+        email,
+        phone_number,
         shippingAddress: {
-          address_line: address_line.value,
-          address_line_2: address_line_2.value,
-          city: city.value,
-          state: state.value,
-          zip: zip.value,
+          address_line,
+          address_line_2,
+          city,
+          state,
+          zip,
         },
-        itemsPrice,
-        shippingPrice,
-        taxPrice,
-        totalPrice,
+        orderItems: inquire,
         isPaid: false,
         isDelivered: false,
         orderAt,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    setOrderSuccess(true);
-    setOrderNumber(orderID);
-    console.log('Your order submitted');
+      })
+    );
+    history.push('/order-details');
   };
 
   return (
@@ -182,7 +181,7 @@ const OrderForm = () => {
                       </p>
                     </div>
 
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
                       <Row>
                         <Col>
                           <label>Full Name</label>
@@ -193,8 +192,11 @@ const OrderForm = () => {
                             <Form.Control
                               type='text'
                               defaultValue={inquiry.firstname}
+                              ref={register}
+                              name='firstname'
                               required
                             />
+
                             <Form.Text className='text-muted'>
                               First Name
                             </Form.Text>
@@ -205,6 +207,8 @@ const OrderForm = () => {
                             <Form.Control
                               type='text'
                               defaultValue={inquiry.lastname}
+                              ref={register}
+                              name='lastname'
                               required
                             />
                             <Form.Text className='text-muted'>
@@ -223,6 +227,8 @@ const OrderForm = () => {
                             <Form.Control
                               type='number'
                               defaultValue={inquiry.phone_number}
+                              ref={register}
+                              name='phone_number'
                               required
                             />
                             <Form.Text className='text-muted'>
@@ -242,6 +248,8 @@ const OrderForm = () => {
                             <Form.Control
                               type='email'
                               defaultValue={inquiry.email}
+                              ref={register}
+                              name='email'
                               required
                             />
                           </Form.Group>
@@ -255,13 +263,23 @@ const OrderForm = () => {
 
                         <Col>
                           <Form.Group controlId='address_line'>
-                            <Form.Control type='text' required />
+                            <Form.Control
+                              type='text'
+                              ref={register}
+                              name='address_line'
+                              required
+                            />
                             <Form.Text className='text-muted'>
                               Address Line 1
                             </Form.Text>
                           </Form.Group>
                           <Form.Group controlId='address_line_2'>
-                            <Form.Control type='text' required />
+                            <Form.Control
+                              type='text'
+                              ref={register}
+                              name='address_line_2'
+                              required
+                            />
                             <Form.Text className='text-muted'>
                               Address Line 2
                             </Form.Text>
@@ -270,7 +288,12 @@ const OrderForm = () => {
                           <Row>
                             <Col>
                               <Form.Group controlId='city'>
-                                <Form.Control type='text' required />
+                                <Form.Control
+                                  type='text'
+                                  ref={register}
+                                  name='city'
+                                  required
+                                />
                                 <Form.Text className='text-muted'>
                                   City
                                 </Form.Text>
@@ -278,7 +301,12 @@ const OrderForm = () => {
                             </Col>
                             <Col>
                               <Form.Group controlId='state'>
-                                <Form.Control type='text' required />
+                                <Form.Control
+                                  type='text'
+                                  ref={register}
+                                  name='state'
+                                  required
+                                />
                                 <Form.Text className='text-muted'>
                                   State / Province
                                 </Form.Text>
@@ -287,7 +315,12 @@ const OrderForm = () => {
                           </Row>
 
                           <Form.Group controlId='zip'>
-                            <Form.Control type='text' required />
+                            <Form.Control
+                              type='text'
+                              ref={register}
+                              name='zip'
+                              required
+                            />
                             <Form.Text className='text-muted'>Zip</Form.Text>
                           </Form.Group>
                         </Col>
@@ -321,8 +354,8 @@ const OrderForm = () => {
                                   </thead>
 
                                   <tbody>
-                                    {inquire.map((item) => (
-                                      <tr>
+                                    {inquire.map((item, index) => (
+                                      <tr key={index}>
                                         <td className='text-center'>
                                           {item.product.model_name}
                                         </td>
@@ -342,46 +375,6 @@ const OrderForm = () => {
                                 </table>
                               </div>
                             </div>
-                          </Col>
-                        </Row>
-                      </div>
-
-                      <div className='order-summary my-5'>
-                        <h3>Order Summary</h3>
-
-                        <Row>
-                          <Col className='order-summary-col' md={2}>
-                            <p>Subtotal:</p>
-                          </Col>
-                          <Col className='order-summary-col' md={2}>
-                            <span>₱ {itemsPrice}</span>
-                          </Col>
-                        </Row>
-
-                        <Row>
-                          <Col className='order-summary-col' md={2}>
-                            <p>Tax:</p>
-                          </Col>
-                          <Col className='order-summary-col' md={2}>
-                            <span>₱ {taxPrice}</span>
-                          </Col>
-                        </Row>
-
-                        <Row>
-                          <Col className='order-summary-col' md={2}>
-                            <p>Shipping:</p>
-                          </Col>
-                          <Col className='order-summary-col' md={2}>
-                            <span>₱ {shippingPrice}</span>
-                          </Col>
-                        </Row>
-
-                        <Row>
-                          <Col className='order-summary-col' md={2}>
-                            <h3>Total:</h3>
-                          </Col>
-                          <Col className='order-summary-col' md={2}>
-                            ₱ {totalPrice}
                           </Col>
                         </Row>
                       </div>

@@ -28,6 +28,7 @@ import CategoryShop from './components/screen/CategoryShop';
 import Resources from './components/screen/Resources';
 import About from './components/screen/About';
 import OrderForm from './components/screen/OrderForm';
+import OrderDetails from './components/screen/OrderDetails';
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
         <PrivateRoute path='/admin/edit/:id' component={EditDescription} />
 
         <Route path='/order-form/:inquiryID' component={OrderForm} />
+        <Route path='/order-details' component={OrderDetails} />
         <Route path='/about' component={About} />
         <Route path='/product/:name' component={ProductPage} />
         <Route path='/category/:name' component={CategoryShop} />

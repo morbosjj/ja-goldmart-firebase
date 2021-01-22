@@ -29,10 +29,12 @@ function Inquiries() {
       title: 'Inquiry ID',
       dataIndex: 'inquiryID',
       key: 'inquiryID',
+      width: 100,
       fixed: 'left',
     },
     {
       title: 'Customer',
+      width: 100,
       render: (record) => (
         <div>
           {record.firstname} {record.lastname}
@@ -40,13 +42,14 @@ function Inquiries() {
       ),
     },
 
-    { title: 'Date', dataIndex: 'inquiryAt', key: 'inquiryAt' },
+    { title: 'Date', dataIndex: 'inquiryAt', key: 'inquiryAt', width: 350 },
 
     {
       title: 'Action',
       dataIndex: 'action',
       key: 'action',
       fixed: 'right',
+      width: 100,
       render: (text, record) => (
         <div className='inquiries-action'>
           <Link to={`/admin/inquiries/${record.inquiryID}`}>

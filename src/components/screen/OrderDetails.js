@@ -18,7 +18,21 @@ import { useDataContext } from '../Context';
 const OrderDetails = () => {
   const { setOrderSuccess, setOrderNumber } = useDataContext();
   const order = JSON.parse(localStorage.getItem('order'));
-  const { orderItems } = order ? order : [];
+
+  const {
+    firstname,
+    lastname,
+    email,
+    phone_number,
+    inquiryID,
+    orderID,
+    isDelivered,
+    isPaid,
+    orderAt,
+    orderItems,
+    shippingAddress,
+  } = order ? order : [];
+
   const history = useHistory();
 
   if (!order) {
@@ -48,7 +62,22 @@ const OrderDetails = () => {
   ).toFixed(2);
 
   const placeOrder = () => {
-    firestore.collection('orders').add(order);
+    firestore.collection('orders').add({
+      orderID,
+      inquiryID,
+      firstname,
+      lastname,
+      email,
+      phone_number,
+      shippingAddress,
+      isDelivered,
+      isPaid,
+      orderAt,
+      itemsPrice,
+      shippingPrice,
+      taxPrice,
+      totalPrice,
+    });
 
     setOrderSuccess(true);
     setOrderNumber(order.orderID);

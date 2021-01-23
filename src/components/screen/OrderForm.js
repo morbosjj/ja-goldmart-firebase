@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Logo from '../../img/logo.png';
 import { useParams, useHistory } from 'react-router-dom';
@@ -38,7 +38,7 @@ const OrderForm = () => {
 
   const { inquire } = inquiry ? inquiry : [];
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     mode: 'onBlur',
   });
 
@@ -47,21 +47,6 @@ const OrderForm = () => {
     getOrderIfExist(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const itemsPrice = inquire
-    ? addDecimals(
-        inquire.reduce((acc, item) => acc + item.product.price * item.qty, 0)
-      )
-    : '';
-
-  const shippingPrice = 100;
-  const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
-
-  const totalPrice = (
-    Number(itemsPrice) +
-    Number(shippingPrice) +
-    Number(taxPrice)
-  ).toFixed(2);
 
   const onSubmit = (data) => {
     const {
@@ -385,7 +370,7 @@ const OrderForm = () => {
                         </Button> */}
 
                         <Button type='submit' className='btn  order-btn'>
-                          Place Order
+                          Continue
                         </Button>
                       </div>
                     </Form>

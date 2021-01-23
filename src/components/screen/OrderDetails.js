@@ -21,18 +21,24 @@ const OrderDetails = () => {
   const { orderItems } = order ? order : [];
   const history = useHistory();
 
+  if (!order) {
+    history.goBack();
+  }
+
   const itemsPrice = orderItems
     ? addDecimals(
         orderItems.reduce((acc, item) => acc + item.product.price * item.qty, 0)
       )
     : '';
 
-  const shippingPrice = addDecimals(
-    order.shippingAddress.state === 'Visayas' ||
-      order.shippingAddress.state === 'Mindanao'
-      ? 3000
-      : 0
-  );
+  const shippingPrice =
+    order &&
+    addDecimals(
+      order.shippingAddress.state === 'Visayas' ||
+        order.shippingAddress.state === 'Mindanao'
+        ? 3000
+        : 0
+    );
   const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
 
   const totalPrice = (
@@ -41,9 +47,6 @@ const OrderDetails = () => {
     Number(taxPrice)
   ).toFixed(2);
 
-  if (!order.shippingAddress) {
-    history.goBack();
-  }
   const placeOrder = () => {
     firestore.collection('orders').add(order);
 
@@ -136,7 +139,9 @@ const OrderDetails = () => {
 
                           <Col md={4}>
                             {item.qty} x ₱{addDecimals(item.product.price)} = ₱
-                            {order.itemsPrice}
+                            {addDecimals(
+                              item.qty * addDecimals(item.product.price)
+                            )}
                           </Col>
                         </Row>
                       </ListGroup.Item>

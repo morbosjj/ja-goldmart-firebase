@@ -73,6 +73,7 @@ const OrderDetails = () => {
       isDelivered,
       isPaid,
       orderAt,
+      orderItems,
       itemsPrice,
       shippingPrice,
       taxPrice,

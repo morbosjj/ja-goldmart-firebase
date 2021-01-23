@@ -47,8 +47,6 @@ function Inquiry({ match }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(order);
-  console.log(placeOrder);
   const inquiryOnlyHandler = () => {
     history.push('/admin/inquiries');
     updateInquiryToInquiryOnly(inquiry.id);

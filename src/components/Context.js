@@ -194,7 +194,6 @@ export const DataProvider = ({ children }) => {
           result.push({ ...doc.data(), id: doc.id });
         });
 
-        console.log(result);
         if (result.length === 0) {
           return setPlaceOrder(false);
         }

@@ -22,9 +22,12 @@ const { Content } = Layout;
 function Inquiry({ match }) {
   const {
     inquiry,
+    order,
     error,
+    placeOrder,
     getInquiryDetails,
     updateInquiryToInquiryOnly,
+    checkIfInquiryIsPlaceOrder,
   } = useDataContext();
   const inquiryId = Number(match.params.id);
   const history = useHistory();
@@ -40,9 +43,12 @@ function Inquiry({ match }) {
 
   useEffect(() => {
     getInquiryDetails(inquiryId);
+    checkIfInquiryIsPlaceOrder(inquiryId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(order);
+  console.log(placeOrder);
   const inquiryOnlyHandler = () => {
     history.push('/admin/inquiries');
     updateInquiryToInquiryOnly(inquiry.id);
@@ -180,26 +186,32 @@ function Inquiry({ match }) {
 
                       {!inquiry.isInquiryOnly && (
                         <ListGroup.Item>
-                          <Row>
-                            <Col>
-                              <Button
-                                type='button'
-                                className='btn btn-block inquiry-btn'
-                                onClick={inquiryOnlyHandler}
-                              >
-                                Inquire Only
-                              </Button>
-                            </Col>
-                            <Col>
-                              <Button
-                                type='button'
-                                className='btn btn-block order-btn'
-                                onClick={createOrderHandler}
-                              >
-                                Create Order
-                              </Button>
-                            </Col>
-                          </Row>
+                          {placeOrder ? (
+                            <p>
+                              <strong>Status: </strong> Place Order
+                            </p>
+                          ) : (
+                            <Row>
+                              <Col>
+                                <Button
+                                  type='button'
+                                  className='btn btn-block inquiry-btn'
+                                  onClick={inquiryOnlyHandler}
+                                >
+                                  Inquire Only
+                                </Button>
+                              </Col>
+                              <Col>
+                                <Button
+                                  type='button'
+                                  className='btn btn-block order-btn'
+                                  onClick={createOrderHandler}
+                                >
+                                  Create Order
+                                </Button>
+                              </Col>
+                            </Row>
+                          )}
 
                           <Row className='mt-3'>
                             {copy && (

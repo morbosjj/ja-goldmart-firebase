@@ -16,6 +16,7 @@ export const DataProvider = ({ children }) => {
   const [order, setOrder] = useState([]);
   const [orderError, setOrderError] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [placeOrder, setPlaceOrder] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
   const [addData, setAddData] = useState({});
   const [addModal, setAddModal] = useState(false);
@@ -181,6 +182,30 @@ export const DataProvider = ({ children }) => {
       });
   };
 
+  const checkIfInquiryIsPlaceOrder = (inquiryId) => {
+    firestore
+      .collection('orders')
+      .where('inquiryID', '==', inquiryId)
+      .get()
+      .then((querySnapshot) => {
+        let result = [];
+
+        querySnapshot.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+
+        console.log(result);
+        if (result.length === 0) {
+          return setPlaceOrder(false);
+        }
+
+        result.map((data) => {
+          setPlaceOrder(true);
+          return setOrder(data);
+        });
+      });
+  };
+
   const getFirestoreQuery = (collection, column, value) => {
     firestore
       .collection(collection)
@@ -321,6 +346,8 @@ export const DataProvider = ({ children }) => {
     setOrderSuccess,
     orderNumber,
     setOrderNumber,
+    placeOrder,
+    checkIfInquiryIsPlaceOrder,
   };
 
   return (

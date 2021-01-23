@@ -22,6 +22,7 @@ const { Content } = Layout;
 const Order = ({ match }) => {
   const {
     order,
+    loading,
     getOrderDetails,
     updateOrderToDelivered,
     updateOrderToPaid,
@@ -31,7 +32,7 @@ const Order = ({ match }) => {
   const date = moment().format('MMMM Do YYYY, h:mm:ss a');
   const method = 'Credit/Debit Card';
   const { orderItems } = order ? order : [];
-
+  console.log(loading);
   useEffect(() => {
     getOrderDetails(orderId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,12 +40,14 @@ const Order = ({ match }) => {
 
   const deliverHandler = () => {
     updateOrderToDelivered(order.id, date);
-    history.push('/admin/orders');
+    history.go(0);
+    // history.push(`/admin/orders/${orderId}`);
   };
 
   const paidHandler = () => {
     updateOrderToPaid(order.id, date, method);
-    history.push('/admin/orders');
+    history.go(0);
+    // history.push(`/admin/orders/${orderId}`);
   };
 
   return (
@@ -177,33 +180,37 @@ const Order = ({ match }) => {
                       </Row>
                     </ListGroup.Item>
 
-                    <ListGroup.Item>
-                      <Row>
-                        {!order.isPaid && (
-                          <Col>
-                            <Button
-                              type='button'
-                              className='btn btn-block inquiry-btn'
-                              onClick={paidHandler}
-                            >
-                              Mark as Paid
-                            </Button>
-                          </Col>
-                        )}
+                    {!order.isDelivered ? (
+                      <ListGroup.Item>
+                        <Row>
+                          {!order.isPaid && (
+                            <Col>
+                              <Button
+                                type='button'
+                                className='btn btn-block inquiry-btn'
+                                onClick={paidHandler}
+                              >
+                                Mark as Paid
+                              </Button>
+                            </Col>
+                          )}
 
-                        {!order.isDelivered && (
-                          <Col>
-                            <Button
-                              type='button'
-                              className='btn btn-block order-btn'
-                              onClick={deliverHandler}
-                            >
-                              Mark as Delivered
-                            </Button>
-                          </Col>
-                        )}
-                      </Row>
-                    </ListGroup.Item>
+                          {order.isPaid && (
+                            <Col>
+                              <Button
+                                type='button'
+                                className='btn btn-block order-btn'
+                                onClick={deliverHandler}
+                              >
+                                Mark as Delivered
+                              </Button>
+                            </Col>
+                          )}
+                        </Row>
+                      </ListGroup.Item>
+                    ) : (
+                      ''
+                    )}
                   </ListGroup>
                 </Card>
               </Col>

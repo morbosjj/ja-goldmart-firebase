@@ -37,7 +37,7 @@ const Resources = () => {
           responseType: 'blob',
         })
         .then(({ data }) => {
-          const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+          // const downloadUrl = window.URL.createObjectURL(new Blob([data]));
           console.log('Download file');
         });
     });

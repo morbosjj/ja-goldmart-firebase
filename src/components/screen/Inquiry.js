@@ -22,7 +22,6 @@ const { Content } = Layout;
 function Inquiry({ match }) {
   const {
     inquiry,
-    order,
     error,
     placeOrder,
     getInquiryDetails,

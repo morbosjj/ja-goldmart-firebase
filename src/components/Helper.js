@@ -60,9 +60,3 @@ export function randomFixedInteger(length) {
       Math.random() * (Math.pow(10, length) - Math.pow(10, length - 1) - 1)
   );
 }
-
-export function addDashInOrderId(value) {
-  const output = value.replace(/\D[^\.]/g, '');
-
-  return (value = output.slice(0, 8) + '-' + output.slice(8, 12));
-}

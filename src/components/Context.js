@@ -65,12 +65,11 @@ export const DataProvider = ({ children }) => {
     auth
       .signInWithPopup(googleProvider)
       .then((result) => {
-        let credential = result.credential;
-
+        // let credential = result.credential;
         // This gives you a Google Access Token. You can use it to access the Google API.
-        let token = credential.accessToken;
+        // let token = credential.accessToken;
         // The signed-in user info.
-        let user = result.user;
+        // let user = result.user;
       })
       .catch((err) => {
         console.log(err);
@@ -268,19 +267,37 @@ export const DataProvider = ({ children }) => {
       });
   };
 
-  const updateOrderToDelivered = (id, date) => {
-    firestore.collection('orders').doc(id).update({
-      isDelivered: true,
-      deliveredAt: date,
-    });
+  const updateOrderToDelivered = async (id, date) => {
+    try {
+      setLoading(true);
+
+      await firestore.collection('orders').doc(id).update({
+        isDelivered: true,
+        deliveredAt: date,
+      });
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
   };
 
-  const updateOrderToPaid = (id, date, method) => {
-    firestore.collection('orders').doc(id).update({
-      isPaid: true,
-      paidAt: date,
-      paymentMethod: method,
-    });
+  const updateOrderToPaid = async (id, date, method) => {
+    try {
+      setLoading(true);
+
+      await firestore.collection('orders').doc(id).update({
+        isPaid: true,
+        paidAt: date,
+        paymentMethod: method,
+      });
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
   };
 
   const addtoInquire = (product, qty) => {

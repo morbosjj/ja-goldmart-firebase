@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-bootstrap';
 import { Layout } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import AdminContainer from '../container/AdminContainer';
 import Loader from '../Loader';
@@ -22,17 +22,15 @@ const { Content } = Layout;
 const Order = ({ match }) => {
   const {
     order,
-    loading,
     getOrderDetails,
     updateOrderToDelivered,
     updateOrderToPaid,
   } = useDataContext();
   const orderId = Number(match.params.id);
-  const history = useHistory();
   const date = moment().format('MMMM Do YYYY, h:mm:ss a');
   const method = 'Credit/Debit Card';
   const { orderItems } = order ? order : [];
-  console.log(loading);
+
   useEffect(() => {
     getOrderDetails(orderId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,14 +38,10 @@ const Order = ({ match }) => {
 
   const deliverHandler = () => {
     updateOrderToDelivered(order.id, date);
-    history.go(0);
-    // history.push(`/admin/orders/${orderId}`);
   };
 
   const paidHandler = () => {
     updateOrderToPaid(order.id, date, method);
-    history.go(0);
-    // history.push(`/admin/orders/${orderId}`);
   };
 
   return (

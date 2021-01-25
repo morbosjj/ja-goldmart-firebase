@@ -7,8 +7,7 @@ import { useDataContext } from '../Context';
 import { useForm } from 'react-hook-form';
 import PageNotFound from './PageNotFound';
 import Loader from '../Loader';
-import { addDecimals, randomFixedInteger } from '../Helper';
-import { firestore } from '../../firebase/config';
+import { randomFixedInteger } from '../Helper';
 import '../../css/components/OrderForm.css';
 
 const OrderForm = () => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {} from 'react-router-dom';
 import App from './App';
-import { DataProvider } from './components/Context';
+import { DataProvider } from './Context';
 import './css/App.css';
 
 ReactDOM.render(

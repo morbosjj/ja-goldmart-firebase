@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import {
   Row,
   Col,
@@ -46,6 +47,8 @@ const Order = ({ match }) => {
 
   return (
     <AdminContainer>
+      <Meta title='Order | Admin' />
+
       <Content className='layout-content'>
         {orderItems ? (
           <div className='order-details-container'>

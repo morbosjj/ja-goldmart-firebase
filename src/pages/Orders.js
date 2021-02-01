@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Layout, Table, Skeleton, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import AdminContainer from '../container/AdminContainer';
@@ -73,6 +74,8 @@ const Orders = () => {
 
   return (
     <AdminContainer title='Orders'>
+      <Meta title='Orders | Admin' />
+
       <Content className='layout-content'>
         {loading ? (
           <Skeleton active />

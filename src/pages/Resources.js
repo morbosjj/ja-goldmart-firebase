@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Container, Table, Card } from 'react-bootstrap';
 import { Layout } from 'antd';
+import Meta from '../component/Meta';
 import MainContainer from '../container/MainContainer';
 import { storage } from '../firebase/config';
 import algoliasearch from 'algoliasearch/lite';
@@ -79,6 +80,7 @@ const Resources = () => {
 
   return (
     <MainContainer>
+      <Meta title='Resources | JA Goldmart Enterprise' />
       <Content className='content-main'>
         <Container>
           <div className='resources-brochure-flyer'>

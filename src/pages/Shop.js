@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import { Layout } from 'antd';
+import Meta from '../component/Meta';
 import Product from '../component/Product';
 import Loader from '../component/Loader';
 import Menu from '../Menu';
@@ -24,6 +25,7 @@ const Shop = () => {
 
   return (
     <MainContainer>
+      <Meta title='Shop | JA Goldmart Enterprise' />
       <Layout>
         <Content className='products-content'>
           <Layout>

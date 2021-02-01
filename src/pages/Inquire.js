@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Meta from '../component/Meta';
 import { Col, Row, Container } from 'react-bootstrap';
 import { Layout, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
@@ -76,6 +77,7 @@ function Inquire() {
 
   return (
     <MainContainer>
+      <Meta title='Inquire | JA Goldmart Enterprise' />
       <Content className='content-main inquire-content'>
         <div className='breadcrumb-container mb-5'>
           <div className='breadcrumb-link'>

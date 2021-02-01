@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Meta from '../component/Meta';
 import {
   Row,
   Col,
@@ -65,6 +66,8 @@ function Inquiry({ match }) {
 
   return (
     <AdminContainer>
+      <Meta title='Inquiry | Admin' />
+
       <Content className='layout-content'>
         {inquire ? (
           <div>

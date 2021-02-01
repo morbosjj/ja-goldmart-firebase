@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Layout, Table, Skeleton, Popconfirm, Button, message } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import { firestore } from '../firebase/config';
@@ -74,6 +75,8 @@ function Inquiries() {
 
   return (
     <AdminContainer title='Inquiries'>
+      <Meta title='Inquiries | Admin' />
+
       <Content className='layout-content'>
         {loading ? (
           <Skeleton active />

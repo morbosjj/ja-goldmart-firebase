@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import MainContainer from '../container/MainContainer';
 import { useDataContext } from '../Context';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -19,6 +20,7 @@ const CategoryShop = ({ match }) => {
 
   return (
     <MainContainer>
+      <Meta title={`${category_name} | JA Goldmart Enterprise`} />
       <Layout>
         <Layout.Content className='products-content'>
           <div className='products-flex'>

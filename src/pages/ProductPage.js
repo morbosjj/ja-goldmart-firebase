@@ -9,6 +9,7 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import Meta from '../component/Meta';
 import ReactHtmlParser from 'react-html-parser';
 import ImageGallery from 'react-image-gallery';
 import { Link } from 'react-router-dom';
@@ -39,6 +40,7 @@ function ProductPage({ match }) {
 
   return (
     <MainContainer>
+      <Meta title={`${name} | JA Goldmart Enterprise`} />
       <div className='product-detail-container'>
         {loading ? (
           <Loader />

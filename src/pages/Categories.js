@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Layout, Table, Skeleton, Button, Popconfirm, message } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import AddCategory from '../modals/AddCategory';
@@ -72,6 +73,8 @@ const Categories = () => {
 
   return (
     <AdminContainer title='Categories'>
+      <Meta title='Categories | Admin' />
+
       <Content className='layout-content'>
         <ModalToggle label='Add Category' modal={AddCategory} />
 

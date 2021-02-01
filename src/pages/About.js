@@ -1,4 +1,5 @@
 import React from 'react';
+import Meta from '../component/Meta';
 import MainContainer from '../container/MainContainer';
 import { Content } from 'antd/lib/layout/layout';
 import Logo from '../img/logo.png';
@@ -7,6 +8,7 @@ import '../css/components/CompanyProfile.css';
 const About = () => {
   return (
     <MainContainer>
+      <Meta title='About | JA Goldmart Enterprise' />
       <Content className='content-main'>
         <div className='about'>
           <div className='about-header'>

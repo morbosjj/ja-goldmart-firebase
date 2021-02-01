@@ -9,6 +9,7 @@ import {
   Card,
   Container,
 } from 'react-bootstrap';
+import Meta from '../component/Meta';
 import { firestore } from '../firebase/config';
 import { Link, useHistory } from 'react-router-dom';
 import Loader from '../component/Loader';
@@ -88,6 +89,7 @@ const OrderDetails = () => {
   };
   return (
     <Container>
+      <Meta title='Order Details | JA Goldmart Enterprise' />
       {orderItems ? (
         <div className='order-details-container'>
           <h1>Order {order.orderID}</h1>

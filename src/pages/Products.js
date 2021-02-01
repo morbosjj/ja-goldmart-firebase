@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Layout, Table, Skeleton, Button, message, Popconfirm } from 'antd';
 import AdminContainer from '../container/AdminContainer';
 import AddProduct from '../modals/AddProduct';
@@ -126,6 +127,8 @@ const Products = () => {
 
   return (
     <AdminContainer title='Products'>
+      <Meta title='Products | Admin' />
+
       <Content className='layout-content'>
         <ModalToggle label='Add Product' modal={AddProduct} />
 

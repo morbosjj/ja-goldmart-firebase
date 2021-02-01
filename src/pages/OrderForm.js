@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Logo from '../img/logo.png';
 import { useParams, useHistory } from 'react-router-dom';
@@ -87,6 +88,7 @@ const OrderForm = () => {
 
   return (
     <div className='order'>
+      <Meta title='Order Form | JA Goldmart Enterprise' />
       <Container>
         <div className='order-form-container'>
           {orderSuccess ? (

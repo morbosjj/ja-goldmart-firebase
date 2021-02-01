@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Meta from '../component/Meta';
 import { Row, Col, ListGroup, Container } from 'react-bootstrap';
 import { Layout } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
@@ -60,6 +61,7 @@ function Contacts() {
 
   return (
     <MainContainer>
+      <Meta title='Contacts | JA Goldmart Enterprise' />
       <Content className='content-main contacts-content'>
         <Container>
           <Row>

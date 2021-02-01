@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import { Layout } from 'antd';
+import Meta from '../component/Meta';
 import Navigation from '../component/Navigation';
 import Carousel from '../component/Carousel';
 import Featured from '../component/Featured';
@@ -16,13 +17,16 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout className='main'>
-      <Navigation />
-      <Carousel />
-      <Featured />
-      <AboutUs />
-      <FooterSite />
-    </Layout>
+    <>
+      <Meta />
+      <Layout className='main'>
+        <Navigation />
+        <Carousel />
+        <Featured />
+        <AboutUs />
+        <FooterSite />
+      </Layout>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Meta from '../component/Meta';
 import { Row, Col } from 'react-bootstrap';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
@@ -17,6 +18,8 @@ const Dashboard = () => {
 
   return (
     <AdminContainer>
+      <Meta title='Dashboard | Admin' />
+
       <div className='dashboard-page'>
         <div className='dashboard-title'>
           <h2 className='dashboard-welcome'>Hi, welcome back</h2>

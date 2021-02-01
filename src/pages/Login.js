@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Meta from '../component/Meta';
 import { Button, Card, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useDataContext } from '../Context';
@@ -19,6 +20,7 @@ const Signup = () => {
 
   return (
     <AuthContainer>
+      <Meta title='Login | Admin' />
       <Card className='login-page'>
         <Card.Body>
           <HeaderAuth />

@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import AdminContainer from '../container/AdminContainer';
 import Meta from '../component/Meta';
 import { Layout, Table, Skeleton, Button } from 'antd';
 import { Link } from 'react-router-dom';
-import AdminContainer from '../container/AdminContainer';
-import { useDataContext } from '../Context';
-import '../css/components/admin/Orders.css';
+import useGetOrdersStatus from '../hooks/useGetOrdersStatus';
 
 const { Content } = Layout;
 
-const Orders = () => {
-  const { orders, loading, getOrders } = useDataContext();
-
-  useEffect(() => {
-    getOrders();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const OrdersStatus = ({ match }) => {
+  const status = match.params.status;
+  const { orders } = useGetOrdersStatus(status);
 
   const columns = [
     {
@@ -74,21 +68,17 @@ const Orders = () => {
 
   return (
     <AdminContainer>
-      <Meta title='Orders | Admin' />
+      <Meta />
 
       <Content className='layout-content'>
-        {loading ? (
-          <Skeleton active />
-        ) : (
-          <Table
-            rowKey={(record) => record.orderID}
-            columns={columns}
-            dataSource={orders}
-          />
-        )}
+        <Table
+          rowKey={(record) => record.orderID}
+          columns={columns}
+          dataSource={orders}
+        />
       </Content>
     </AdminContainer>
   );
 };
 
-export default Orders;
+export default OrdersStatus;

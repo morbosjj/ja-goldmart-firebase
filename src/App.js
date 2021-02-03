@@ -14,6 +14,7 @@ import Inquiry from './pages/Inquiry';
 import Inquiries from './pages/Inquiries';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
+import OrdersStatus from './pages/OrdersStatus';
 import Order from './pages/Order';
 import Description from './pages/Description';
 import Categories from './pages/Categories';
@@ -41,6 +42,10 @@ const App = () => {
         <PrivateRoute path='/admin/inquiries/:id' component={Inquiry} />
         <PrivateRoute path='/admin/inquiries' component={Inquiries} />
         <PrivateRoute path='/admin/products' component={Products} />
+        <PrivateRoute
+          path='/admin/orders/status/:status'
+          component={OrdersStatus}
+        />
         <PrivateRoute path='/admin/orders/:id' component={Order} />
         <PrivateRoute path='/admin/orders' component={Orders} />
         <PrivateRoute path='/admin/description' component={Description} />

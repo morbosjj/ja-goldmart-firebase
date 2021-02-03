@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 import Logo from '../img/logo.png';
 import useHistoryLink from '../hooks/useHistoryLink';
+import SubMenu from 'antd/lib/menu/SubMenu';
 
 const { Sider } = Layout;
 
@@ -38,9 +39,28 @@ const SideMenu = ({ collapsed }) => {
         <Menu.Item key='dashboard' icon={<DashboardFilled />}>
           <Link to='/admin/dashboard'>Dashboard</Link>
         </Menu.Item>
-        <Menu.Item key='orders' icon={<InboxOutlined />}>
-          <Link to='/admin/orders'>Orders</Link>
-        </Menu.Item>
+
+        <SubMenu title='Orders'>
+          <Menu.Item key='orders' icon={<InboxOutlined />}>
+            <Link to='/admin/orders'>All Orders</Link>
+          </Menu.Item>
+          <Menu.Item key='pending' icon={<i className='fas fa-clock'></i>}>
+            <Link to='/admin/orders/status/pending'>Pending Orders</Link>
+          </Menu.Item>
+          <Menu.Item
+            key='complete'
+            icon={<i className='fas fa-check-circle'></i>}
+          >
+            <Link to='/admin/orders/status/complete'>Complete Orders</Link>
+          </Menu.Item>
+          <Menu.Item key='unpaid' icon={<i className='fas fa-money-check'></i>}>
+            <Link to='/admin/orders/status/unpaid'>Unpaid Orders</Link>
+          </Menu.Item>
+          <Menu.Item key='delivered' icon={<i className='fas fa-truck'></i>}>
+            <Link to='/admin/orders/status/delivered'>Delivered Orders</Link>
+          </Menu.Item>
+        </SubMenu>
+
         <Menu.Item key='inquiries' icon={<MailOutlined />}>
           <Link to='/admin/inquiries'>Inquiry</Link>
         </Menu.Item>

@@ -79,6 +79,7 @@ const OrderDetails = () => {
       shippingPrice,
       taxPrice,
       totalPrice,
+      status: 'Pending',
     });
 
     setOrderSuccess(true);

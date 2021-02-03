@@ -36,7 +36,7 @@ const Signup = () => {
             type='button'
             onClick={loginGoogle}
           >
-            <i class='fab fa-google'></i>{' '}
+            <i className='fab fa-google'></i>{' '}
             {loading ? 'Please wait' : 'Login with Google'}
           </Button>
         </Card.Body>

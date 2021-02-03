@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { projectFirestore } from '../firebase/config';
+import { firestore } from '../firebase/config';
 
 const useQuery = (collection, column, value) => {
   const [result, setResult] = useState();
 
   useEffect(() => {
-    let productRef = projectFirestore.collection(collection);
+    let productRef = firestore.collection(collection);
 
     const query = productRef.where(column, '==', value);
 

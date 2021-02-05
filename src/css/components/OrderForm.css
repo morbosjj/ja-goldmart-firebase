@@ -71,7 +71,7 @@
   font-weight: 500;
 }
 
-.order-form-content .order-form label:after {
+.order-form-content .order-form .form-order-details label:after {
   content: '*';
   color: red;
   margin-left: 5px;

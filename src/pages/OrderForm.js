@@ -48,7 +48,7 @@ const OrderForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
     const {
       firstname,
       lastname,
@@ -59,6 +59,7 @@ const OrderForm = () => {
       city,
       state,
       zip,
+      shippingPrice,
     } = data;
 
     localStorage.setItem(
@@ -77,6 +78,7 @@ const OrderForm = () => {
           state,
           zip,
         },
+        shippingPrice,
         orderItems: inquire,
         isPaid: false,
         isDelivered: false,
@@ -168,7 +170,7 @@ const OrderForm = () => {
                     </div>
 
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                      <Row>
+                      <Row className='form-order-details'>
                         <Col>
                           <label>Full Name</label>
                         </Col>
@@ -204,7 +206,7 @@ const OrderForm = () => {
                         </Col>
                       </Row>
 
-                      <Row>
+                      <Row className='form-order-details'>
                         <Col md={4}>
                           <label>Phone Number</label>
                         </Col>
@@ -224,7 +226,7 @@ const OrderForm = () => {
                         </Col>
                       </Row>
 
-                      <Row>
+                      <Row className='form-order-details'>
                         <Col md={4}>
                           <label>E-mail</label>
                         </Col>
@@ -242,7 +244,7 @@ const OrderForm = () => {
                         </Col>
                       </Row>
 
-                      <Row>
+                      <Row className='form-order-details'>
                         <Col md={4}>
                           <label>Delivery Address</label>
                         </Col>
@@ -311,6 +313,76 @@ const OrderForm = () => {
                           </Form.Group>
                         </Col>
                       </Row>
+
+                      <div className='order-shipping'>
+                        <label>Shipping Method</label>
+                        <Row>
+                          <Col>
+                            <Form.Group controlId='shippingPrice'>
+                              <Form.Check type='radio'>
+                                <Form.Check.Input
+                                  type='radio'
+                                  name='shippingPrice'
+                                  ref={register}
+                                  value={0}
+                                  label='M'
+                                />
+                                <Form.Check.Label>
+                                  Metro Manila ₱ 0.00 <span>Free Shipping</span>
+                                </Form.Check.Label>
+                              </Form.Check>
+
+                              <Form.Check type='radio'>
+                                <Form.Check.Input
+                                  type='radio'
+                                  name='shippingPrice'
+                                  ref={register}
+                                  value={300}
+                                />
+                                <Form.Check.Label>
+                                  Nothern Luzon ₱ 300.00
+                                </Form.Check.Label>
+                              </Form.Check>
+
+                              <Form.Check type='radio'>
+                                <Form.Check.Input
+                                  type='radio'
+                                  name='shippingPrice'
+                                  ref={register}
+                                  value={400}
+                                />
+                                <Form.Check.Label>
+                                  Southern Luzon ₱ 400.00
+                                </Form.Check.Label>
+                              </Form.Check>
+
+                              <Form.Check type='radio'>
+                                <Form.Check.Input
+                                  type='radio'
+                                  name='shippingPrice'
+                                  ref={register}
+                                  value={450}
+                                />
+                                <Form.Check.Label>
+                                  Visayas ₱ 450.00
+                                </Form.Check.Label>
+                              </Form.Check>
+
+                              <Form.Check type='radio'>
+                                <Form.Check.Input
+                                  type='radio'
+                                  name='shippingPrice'
+                                  ref={register}
+                                  value={500}
+                                />
+                                <Form.Check.Label>
+                                  Mindanao ₱ 500.00
+                                </Form.Check.Label>
+                              </Form.Check>
+                            </Form.Group>
+                          </Col>
+                        </Row>
+                      </div>
 
                       <div className='order-products'>
                         <Row>

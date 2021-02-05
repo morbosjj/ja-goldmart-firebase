@@ -32,6 +32,7 @@ const OrderDetails = () => {
     orderAt,
     orderItems,
     shippingAddress,
+    shippingPrice,
   } = order ? order : [];
 
   const history = useHistory();
@@ -46,21 +47,19 @@ const OrderDetails = () => {
       )
     : '';
 
-  const shippingPrice =
-    order &&
-    addDecimals(
-      order.shippingAddress.state === 'Visayas' ||
-        order.shippingAddress.state === 'Mindanao'
-        ? 3000
-        : 0
-    );
-  const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
+  // const shippingPrice =
+  //   order &&
+  //   addDecimals(
+  //     order.shippingAddress.state === 'Visayas' ||
+  //       order.shippingAddress.state === 'Mindanao'
+  //       ? 3000
+  //       : 0
+  //   );
+  // const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
 
-  const totalPrice = (
-    Number(itemsPrice) +
-    Number(shippingPrice) +
-    Number(taxPrice)
-  ).toFixed(2);
+  const totalPrice = (Number(itemsPrice) + Number(shippingPrice)).toFixed(2);
+
+  // + taxPrice
 
   const placeOrder = () => {
     firestore.collection('orders').add({
@@ -77,9 +76,8 @@ const OrderDetails = () => {
       orderItems,
       itemsPrice,
       shippingPrice,
-      taxPrice,
       totalPrice,
-      status: 'Pending',
+      status: 'pending',
     });
 
     setOrderSuccess(true);
@@ -202,13 +200,6 @@ const OrderDetails = () => {
                     <Row>
                       <Col>Shipping</Col>
                       <Col>₱{shippingPrice}</Col>
-                    </Row>
-                  </ListGroup.Item>
-
-                  <ListGroup.Item>
-                    <Row>
-                      <Col>Tax</Col>
-                      <Col>₱{taxPrice}</Col>
                     </Row>
                   </ListGroup.Item>
 
